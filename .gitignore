@@ -1,0 +1,32 @@
+# Created by https://www.toptal.com/developers/gitignore/api/renpy
+# Edit at https://www.toptal.com/developers/gitignore?templates=renpy
+
+### Renpy ###
+# Don't track content of these folders #
+########################################
+cache/
+saves/
+
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+*.rpyc
+*.rpymc
+
+
+# The log file and other misc things #
+######################################
+log.txt
+errors.txt
+traceback.txt
+files.txt
+
+# End of https://www.toptal.com/developers/gitignore/api/renpy
+*.rpyc
