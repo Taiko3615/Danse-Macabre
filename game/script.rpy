@@ -1,33 +1,67 @@
-﻿# The script of the game goes in this file.
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
+#The game is in NVL mode, meaning the text fills the screen
+define narrator = nvl_narrator
 
-define e = Character("Eileen")
+include "intro.rpy"
+include "tutorial.rpy"
+include "garden.rpy"
 
+#Not all locations are known initially
+default archives_known = False
+default crypt_known = False
 
-# The game starts here.
+#Keep track of which location has been visited already
+default garden_visited = False
+default mortuary_visited = False
+default scriptorium_visited = False
+default archives_visited = False
+default crypt_visited = False
 
 label start:
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
+    #Let's start with the intro
+    #call intro
 
-    scene bg room
+    #Now the tutorial
+    #call tutorial
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+    show screen map
 
-    show eileen happy
-
-    # These display lines of dialogue.
-
-    e "You've created a new Ren'Py game."
-
-    e "Once you add a story, pictures, and music, you can release it to the world!"
-
-    # This ends the game.
+    while True :
+        jump garden
 
     return
+
+#Map Icon an functionality
+screen map:
+    zorder 10
+    imagebutton:
+        xpos 1800
+        ypos 10
+        idle "map.png"
+        at custom_zoom
+        action Jump("chose_location")
+
+transform custom_zoom:
+    zoom 0.2
+
+label chose_location:
+    scene bg map
+    nvl clear
+    menu:
+     "Where should I go ?"
+
+     "Garden with the Abbot":
+         jump garden
+
+     "Mortuary with Brother Galeazzo":
+         jump garden
+
+     "Scriptorium with Brother Conrad":
+         jump garden
+
+     "Archives of the Societa Templois" if archives_known:
+         jump garden
+
+     "Crypt" if crypt_known:
+         jump garden
