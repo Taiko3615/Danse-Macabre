@@ -3,6 +3,7 @@ __version__ = "0.0.1"
 # Import necessary modules
 import chatgpt
 import re
+import json
 
 # Define a Non-Player Character (NPC) class for a chatbot-based application
 class NPC:
@@ -29,6 +30,9 @@ class NPC:
             {"role": "user", "content": user_input}
         )
 
+        #Remove any weird characters
+        user_input = re.sub(r'[^\w\s\'!\(\)\?\.\,\:\;\-]', '', user_input)
+
         # Display the user input
         pov(user_input + "{nw}")
 
@@ -42,9 +46,13 @@ class NPC:
 
             # Extract the NPC's response from the generated messages
             response = self.messages[-1]["content"]
-        except:
+        except Exception as e:
             # Display an error message if the API call fails
             response = "(There was an error please try again)"
+
+        #Before the text is displayed, let's call all the controllers
+        for controller in self.controllers:
+            controller.control(self.messages, self.proxy)
 
         # Display the NPC's response line by line with a specified time delay between messages
         self.display_line_by_line(response, 1)
@@ -68,3 +76,62 @@ class NPC:
                 self.character(sentence)
             else:
                 self.character(sentence + "{w=" + str(time_between_messages) + "}{nw}")
+
+# This class is designed to analyze a conversation and check if specific keywords
+# have been mentioned, triggering a callback function if the conditions are met
+class Controller:
+    def __init__(self, control_phrase, callback, activated = True):
+        # Construct the control prompt by including the control_phrase
+        self.prompt = (
+            """I want you to act as a sentence analyser that responds to questions based on a conversation between a user and an assistant.
+        if ("""
+            + control_phrase
+            + """) then respond this exact word '<TRUE>'
+        else respond this exact word '<FALSE>'"""
+        )
+
+        # Store the callback function
+        self.callback = callback
+
+        #By default the callback is active, but it can be deactivated
+        self.activated = activated
+
+    def control(self, messages, proxy):
+
+        #If the callback is deactivated, we skip this
+        if not self.activated : return
+
+        #We will only keep max 5000 characters worth of conversation
+        few_last_messages = messages.copy()
+
+        # Ensure the message history does not exceed the 5000-character limit
+        while len(str(few_last_messages)) > 5000:
+            few_last_messages.pop(0)
+
+        # Construct the control messages by including the conversation history
+        control_messages = [
+            {"role": "system", "content": self.prompt},
+            {
+                "role": "user",
+                "content": (
+                    "Here is the conversation between the user and the assistant \n\n <"
+                    + json.dumps(few_last_messages)
+                    + "> \n\n"
+                    + self.prompt
+                ),
+            },
+        ]
+
+        try:
+            # Make a ChatGPT API call to get the response
+            response = chatgpt.completion(control_messages, proxy=proxy)[-1]["content"]
+        except:
+            # Display an error message if the API call fails
+            response = "<FALSE> ERROR"
+
+        # Sometimes he "hesitates" ans says "I"m not sure if it is True or False"
+        # So we only move forward if there's True and not False in his response
+        if "<TRUE>" in response and not "<FALSE>" in response and self.callback is not None:
+            #The callback should only be called once
+            self.activated = False
+            self.callback()

@@ -2,13 +2,22 @@
 #The game is in NVL mode, meaning the text fills the screen
 define narrator = nvl_narrator
 
-include "intro.rpy"
-include "tutorial.rpy"
-include "garden.rpy"
-
 #Not all locations are known initially
 default archives_known = False
 default crypt_known = False
+
+init python:
+    def archives_mentioned():
+        archives_known = True
+        narrator("(New location unlocked : Archives of the Societa Templois)")
+
+    def crypt_mentioned():
+        crypt_known = True
+        narrator("(New location unlocked : Crypt)")
+
+include "intro.rpy"
+include "tutorial.rpy"
+include "garden.rpy"
 
 #Keep track of which location has been visited already
 default garden_visited = False

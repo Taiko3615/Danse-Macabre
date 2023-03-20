@@ -71,12 +71,23 @@ label garden:
             You are ashamed of yourself and blame yourself for all the woes that happened in the abbey, you doubt if it is a punishment from god.
 
         Your personality :
-            You love agrdening, it is his favourite activity.
+            You love gardening, it is his favourite activity.
             You are quite old and he seems lost in thoughts.
             You always carry a rosary and pray even when talking to the player.
             You pray a lot because you are very very worried about what will happen to the abbey now that their most important donors are dead. Almost of the funding of the abbey came from the generous patronage of Otto Leopold and Friedrich.
 
         """,
+
+        controllers = [
+                npc.Controller(
+                    #The condition which this controller is Checking for
+                    control_phrase="the NPC mentioned Otto der Fröhliche von Habsburg or Leopold II von Habsburg or he mentioned a Crypt in the Abbey",
+                    #The callback that will be called if it happens
+                    callback=crypt_mentioned,
+                    #We only activate this controller if the crypt is not known yet
+                    activated = not crypt_known
+                     )
+            ],
 
         # Set the proxy server for the NPC to use
         proxy="http://prima.wiki/proxy.php"
