@@ -55,7 +55,7 @@ label intro:
 
     scene bg horror 5 with dissolve
 
-    f "N{w=0.1}O{w=0.1}O{w=0.1}O{w=0.1}O{w=0.1}O{w=0.1}O{w=0.2}o{w=0.2}o{w=0.2}o{w=0.2}o{w=0.2}o{w=0.2}o{w=0.2}.{w=0.2}.{w=0.2}."
+    f "N{w=0.1}O{w=0.1}O{w=0.1}O{w=0.1}O{w=0.1}O{w=0.1}O{w=0.2}o{w=0.2}o{w=0.2}o{w=0.2}o{w=0.2}o{w=0.2}o{w=0.2}.{w=0.2}.{w=0.2}.{w=0.2}{nw}"
 
     scene bg black with dissolve
 

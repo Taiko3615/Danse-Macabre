@@ -40,7 +40,7 @@ label open_map:
          jump garden
 
      "Mortuary with Brother Galeazzo":
-         jump garden
+         jump mortuary
 
      "Scriptorium with Brother Conrad":
          jump scriptorium
@@ -103,3 +103,6 @@ label open_journal:
         j(" ")
 
     return
+
+##JOURNAL SYSTEM-CLUES##
+define missing_heart_known = False

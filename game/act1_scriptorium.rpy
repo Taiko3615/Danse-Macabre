@@ -9,11 +9,12 @@ label scriptorium:
     scene bg scriptorium with dissolve
 
     # Let's create the Prompt of the NPC in this scene
-    define npc_prompt = npc_prompt_template.format(
+    $ npc_prompt = npc_prompt_template.format(
     facts= act1_facts,
     npc_name_and_title="Brother Conrad, you are a scribe"
     ,
     npc_knows_ok_to_say="""
+        You are currently in the Scriptorium.
         You were the only real friend of Friedrich II, you were his confessor which is why you liked each other.
         You last saw Friedrich II for breakfast, he was always carrying a book and seemed distrubed. He wanted to confess something very important to you but didn't have time.
         Friedrich II didn't eat or drink anything at breakfast.
@@ -82,7 +83,7 @@ label scriptorium:
         # Read and display the initial message from the NPC
         $ curr_npc.read_initial_message()
     else:
-        "(You are back in the scriptorium in front of the Brother Conrad)"
+        "(You are back in the scriptorium in front of Brother Conrad)"
 
     # Set the location flag to True
     $ scriptorium_visited = True
