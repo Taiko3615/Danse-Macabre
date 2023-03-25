@@ -5,12 +5,12 @@ define config.rollback_enabled = False
 label start:
 
     #Let's start with the intro
-    call intro
+    call intro from _call_intro
 
     #Now the tutorial
     #call tutorial
 
     #Now start act 1
-    call act1
+    call act1 from _call_act1
 
     return
