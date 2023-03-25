@@ -4,6 +4,10 @@ Used Gimp to resize crop etc...
 
 ##Scenes
 
+masterpiece Abbey bas-relief, a skull, lots of books --v 5 --ar 16:9 --upbeta
+
+sketch of the necronomicon bound in chains --ar 16:9 --upbeta
+
 epic medieval battle, castle burning in the background, mountains --ar 16:9 --v 5 --upbeta
 
 teenage duke von Habsburg, ceremonial clothes, praying in front of a cross --ar 16:9 --v 5 --upbeta
@@ -18,7 +22,7 @@ extremely detailed, extremely messy, medieval painting by Hieronymus Bosch, eldr
 
 the god of skulls, extremely detailed, extremely messy, medieval painting by Hieronymus Bosch, masterpiece --ar 16:9
 
-Medieval Map of an Abbey --ar 16:9 --upbeta --no words text
+sketch of an Abbey --ar 16:9 --upbeta
 
 Scriptorium filled with monks transcribing old texts gothic architecture.
 
