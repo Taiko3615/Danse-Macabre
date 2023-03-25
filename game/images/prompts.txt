@@ -1,0 +1,51 @@
+Here is a list of Prompts used to generate those images using MidJourney
+In some cases we used this website to remove backgrounds https://removal.ai/upload/
+Used Gimp to resize crop etc...
+
+##Scenes
+
+epic medieval battle, castle burning in the background, mountains --ar 16:9 --v 5 --upbeta
+
+teenage duke von Habsburg, ceremonial clothes, praying in front of a cross --ar 16:9 --v 5 --upbeta
+
+Gloomy Austrian abbey, showcasing its intricate architectural details from a side perspective. The scene includes a lush yet somber garden that's visible and complements the mysterious atmosphere of the abbey.
+
+extremely detailed, extremely messy, medieval painting by Hieronymus Bosch, nightmares, eldritch horrors, skeletons, masterpiece --ar 16:9
+
+extremely detailed, extremely messy, medieval painting by Hieronymus Bosch, skeletons, nightmares, eldritch horrors, masterpiece --ar 16:9
+
+extremely detailed, extremely messy, medieval painting by Hieronymus Bosch, eldritch horrors, masterpiece --ar 16:9
+
+the god of skulls, extremely detailed, extremely messy, medieval painting by Hieronymus Bosch, masterpiece --ar 16:9
+
+Medieval Map of an Abbey --ar 16:9 --upbeta --no words text
+
+Scriptorium filled with monks transcribing old texts gothic architecture.
+
+Library of hell, basement, chained books, evil --ar 16:9 --upbeta
+
+Benedictine Abbey Crypt, tombs, knight statue in the background lots of candles at the feet of the statue --ar 16:9 --upbeta
+
+Benedictine mortuary, incense smoke everywhere --ar 16:9 --upbeta
+
+
+##Portraits
+
+Upper-body shot, young duke von Habsburg, ceremonial clothes, facing right
+
+Upper-body shot, shady benedictine monk, tonsure, facing left
+
+Upper-body shot, gloomy Abbot in brown robes, deep-set eyes, long white beard, rosary
+
+Upper-body shot, insane benedictine monk, massive dark circles, tonsure, tired, very tired
+
+Upper-body shot, sick benedictine monk, smallpox, doctor, vial in hand
+
+Upper-body shot, benedictine monk, tonsure, praying
+
+
+##Icons
+
+Icon of a Journal
+
+Icon of a Scroll Map
