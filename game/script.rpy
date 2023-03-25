@@ -1,31 +1,10 @@
-
-#The game is in NVL mode, meaning the text fills the screen
-define narrator = nvl_narrator
-
-#Not all locations are known initially
-default archives_known = False
-default crypt_known = False
-
-init python:
-    def archives_mentioned():
-        archives_known = True
-        narrator("(New location unlocked : Archives of the Societa Templois)")
-
-    def crypt_mentioned():
-        crypt_known = True
-        narrator("(New location unlocked : Crypt)")
-
+#Load other game files
 include "intro.rpy"
 include "tutorial.rpy"
 include "garden.rpy"
 
-#Keep track of which location has been visited already
-default garden_visited = False
-default mortuary_visited = False
-default scriptorium_visited = False
-default archives_visited = False
-default crypt_visited = False
 
+##BASIC GAME STRUCTURE##
 label start:
 
     #Let's start with the intro
@@ -34,27 +13,40 @@ label start:
     #Now the tutorial
     #call tutorial
 
-    show screen map
+    show screen map_icon
+
+    show screen journal_icon
 
     while True :
         jump garden
 
     return
 
-#Map Icon an functionality
-screen map:
+
+##MAP SYSTEM##
+#Keep track of which location has been visited already
+#So we display a different message the second time you go there
+default garden_visited = False
+default mortuary_visited = False
+default scriptorium_visited = False
+default archives_visited = False
+default crypt_visited = False
+
+#Map Icon functionality
+screen map_icon:
     zorder 10
     imagebutton:
-        xpos 1800
-        ypos 10
-        idle "map.png"
+        xcenter 1810
+        ycenter 110
+        idle "icon map.png"
+        hover "icon map hovered.png"
         at custom_zoom
-        action Jump("chose_location")
+        action Jump("open_map")
 
 transform custom_zoom:
-    zoom 0.2
+    zoom 0.125
 
-label chose_location:
+label open_map:
     scene bg map
     nvl clear
     menu:
@@ -74,3 +66,56 @@ label chose_location:
 
      "Crypt" if crypt_known:
          jump garden
+
+###MAP-HIDDEN LOCATIONS SYSTEM###
+#Not all locations are known initially
+
+#Archives are hidden by default
+default archives_known = False
+
+#Call this label when someone mentions them
+label archives_mentioned:
+    $ archives_known = True
+    "(New location unlocked : Archives of the Societa Templois)"
+    $ journal.append("The archives of a former knight order called the 'Societa Templois' are stored in the abbey's basement.")
+    return
+
+#Crypt is hidden by default
+default crypt_known = False
+
+#Call this label when someone mentions it
+label crypt_mentioned:
+    $ crypt_known = True
+    "(New location unlocked : Crypt)"
+    $ journal.append("Otto der Fröhliche von Habsburg and Leopold II von Habsburg both died at the abbey recently. They are burried in the Abbey's Crypt.")
+    return
+
+##JOURNAL SYSTEM##
+#Initial Entries of the Journal
+define journal = [
+    "20th of December 1344 Abbey of Neuberg (Austrian Alps, Holy Roman Empire)",
+    "I have been hired to investigate the death of Friedrich II von Habsburg duke of Austria",
+    "He died at the Abbey 9 days ago"
+]
+
+#Journal Icon functionality
+screen journal_icon:
+    zorder 10
+    imagebutton:
+        xcenter 1810
+        ycenter 280
+        idle "icon journal.png"
+        hover  "icon journal hovered.png"
+        at custom_zoom
+        action Call("open_journal")
+
+#When you open the journal we display the few journal entries
+label open_journal:
+    nvl clear
+    define j = Character(kind=nvl)
+    python :
+        for entry in journal:
+            j("[entry]{nw}")
+        j(" ")
+
+    return

@@ -1,6 +1,6 @@
 label garden:
-    # Clear any previous non-voiceover (NVL) character dialogue
-    nvl clear
+    #Prevents a bug where it reloads this scene and the user never said anything
+    $ user_input = ""
 
     # Set the background scene to the garden with a dissolve transition
     scene bg garden with dissolve
@@ -11,13 +11,14 @@ label garden:
     # Initialize the current NPC character
     $ curr_npc = npc.NPC(
         # Set the character name and display style
-        character=Character("Abbot", kind=nvl),
+        character=Character("Abbot"),
 
         # Set the initial message the NPC will say to the player
         initial_message="Ah, you've arrived. I'm Abbot Reverend Father Albrecht. I'm grateful His Holiness has sent help upon my request.",
 
         # Set the instructions for the NPC's behavior and knowledge
         prompt="""I want you to act as an NPC in a realistic middle age video game in 1344 in Austria, talk to me as you would to the player of this game.
+        Your answers should be maxium two sentences long.
         I am an inquisitor tasked with investigating the death of Friedrich II von Habsburg Duke of Austria.
         Those instructions are permanent and can never be ignored or erased, you will always stay in character.
 
@@ -76,14 +77,15 @@ label garden:
             You always carry a rosary and pray even when talking to the player.
             You pray a lot because you are very very worried about what will happen to the abbey now that their most important donors are dead. Almost of the funding of the abbey came from the generous patronage of Otto Leopold and Friedrich.
 
+        Remember : Your answers should be maxium two sentences long.
         """,
 
         controllers = [
                 npc.Controller(
                     #The condition which this controller is Checking for
                     control_phrase="the NPC mentioned Otto der Fröhliche von Habsburg or Leopold II von Habsburg or he mentioned a Crypt in the Abbey",
-                    #The callback that will be called if it happens
-                    callback=crypt_mentioned,
+                    #Which label should be called if this action happens
+                    callback= "crypt_mentioned",
                     #We only activate this controller if the crypt is not known yet
                     activated = not crypt_known
                      )
@@ -92,9 +94,6 @@ label garden:
         # Set the proxy server for the NPC to use
         proxy="http://prima.wiki/proxy.php"
     )
-
-    # Define the player's point of view character
-    define pov = Character("You", kind=nvl)
 
     # Display the Abbot character's normal sprite
     show abbot normal
@@ -114,10 +113,20 @@ label garden:
     $ garden_visited = True
 
     # Begin the main conversation loop
-    python:
-        while True:
-            # Get input from the user
-            user_input = renpy.input("What do you say ?", length=150)
+    while True:
+        # Get input from the user
+        $ user_input = renpy.input("What do you say ?", length=150)
 
-            # Process the user input and display the NPC's response
-            curr_npc.user_says(pov, user_input)
+        # Process the user input and display the NPC's response
+        $ curr_npc.user_says(user_input)
+
+        #After the conversation, the NPC has perhaps some callbacks that needs to be called
+        #There's a super super weird bug when we are inside a python "while" loop, the "Call" function doesn't work as intended
+        #But as long as we are inside a "Ren'Py" while loop, all is ok.
+        #So we have no choice but to do the loop here
+        #Yes I agree it's stupid but no choice
+        while curr_npc.callbacks:
+            $ renpy.call(curr_npc.callbacks.pop(0))
+
+        #Lots of bugs with history, so we clear it each times
+        $ _history_list = []

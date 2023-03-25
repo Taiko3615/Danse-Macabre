@@ -19,12 +19,17 @@ class NPC:
         ]
         self.proxy = proxy
 
+        #A list of labels that the NPC requests the main thread to callback
+        #For some reasons it doens't work if the NPC calls them directly
+        self.callbacks=[]
+
     # Read and execute the initial message by the NPC
     def read_initial_message(self):
         self.character(self.initial_message)
 
     # Process user input and add it to the message history
-    def user_says(self, pov, user_input):
+    def user_says(self, user_input):
+
         # Append the user input to the message history
         self.messages.append(
             {"role": "user", "content": user_input}
@@ -32,9 +37,6 @@ class NPC:
 
         #Remove any weird characters
         user_input = re.sub(r'[^\w\s\'!\(\)\?\.\,\:\;\-]', '', user_input)
-
-        # Display the user input
-        pov(user_input + "{nw}")
 
         # Ensure the message history does not exceed the 10000-character limit
         while len(str(self.messages)) > 10000:
@@ -50,15 +52,22 @@ class NPC:
             # Display an error message if the API call fails
             response = "(There was an error please try again)"
 
-        #Before the text is displayed, let's call all the controllers
-        for controller in self.controllers:
-            controller.control(self.messages, self.proxy)
-
         # Display the NPC's response line by line with a specified time delay between messages
-        self.display_line_by_line(response, 1)
+        self.display_line_by_line(response)
+
+        #Finally call the controllers
+        for controller in self.controllers:
+            result = controller.control(self.messages, self.proxy)
+            if result is not None:
+                self.callbacks.append(result)
 
     # Split a given text into sentences and display them one by one with a time delay
-    def display_line_by_line(self, text, time_between_messages=1):
+    def display_line_by_line(self, text):
+
+        #if the text is short enough, we display it in one time.
+        if len(text) < 150 :
+            self.character(text)
+            return
 
         split_into_sentences = []
 
@@ -71,11 +80,7 @@ class NPC:
             # Remove leading and trailing whitespace from the sentence
             sentence = sentence.strip()
 
-            # Display the sentence with or without a time delay depending on its position in the list
-            if sentence == split_into_sentences[-1]:
-                self.character(sentence)
-            else:
-                self.character(sentence + "{w=" + str(time_between_messages) + "}{nw}")
+            self.character(sentence)
 
 # This class is designed to analyze a conversation and check if specific keywords
 # have been mentioned, triggering a callback function if the conditions are met
@@ -99,10 +104,13 @@ class Controller:
     def control(self, messages, proxy):
 
         #If the callback is deactivated, we skip this
-        if not self.activated : return
+        if not self.activated : return None
 
         #We will only keep max 5000 characters worth of conversation
         few_last_messages = messages.copy()
+
+        #By default we remove the first message because it's the prompt
+        few_last_messages.pop(0)
 
         # Ensure the message history does not exceed the 5000-character limit
         while len(str(few_last_messages)) > 5000:
@@ -134,4 +142,6 @@ class Controller:
         if "<TRUE>" in response and not "<FALSE>" in response and self.callback is not None:
             #The callback should only be called once
             self.activated = False
-            self.callback()
+            return self.callback
+
+        return None
