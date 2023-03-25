@@ -3,12 +3,14 @@ include "intro.rpy"
 include "tutorial.rpy"
 include "garden.rpy"
 
+#The rollback creates some bugs, so I disable it
+define config.rollback_enabled = False
 
 ##BASIC GAME STRUCTURE##
 label start:
 
     #Let's start with the intro
-    #call intro
+    call intro
 
     #Now the tutorial
     #call tutorial
@@ -93,7 +95,7 @@ label crypt_mentioned:
 ##JOURNAL SYSTEM##
 #Initial Entries of the Journal
 define journal = [
-    "20th of December 1344 Abbey of Neuberg (Austrian Alps, Holy Roman Empire)",
+    "20th of December 1344 Abbey of Neuberg\n(Austrian Alps, Holy Roman Empire)",
     "I have been hired to investigate the death of Friedrich II von Habsburg duke of Austria",
     "He died at the Abbey 9 days ago"
 ]

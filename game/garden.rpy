@@ -88,6 +88,14 @@ label garden:
                     callback= "crypt_mentioned",
                     #We only activate this controller if the crypt is not known yet
                     activated = not crypt_known
+                     ),
+                npc.Controller(
+                    #The condition which this controller is Checking for
+                    control_phrase="the NPC mentioned the Societa Templois or he mentioned the Archives in the Abbey",
+                    #Which label should be called if this action happens
+                    callback= "archives_mentioned",
+                    #We only activate this controller if the crypt is not known yet
+                    activated = not archives_known
                      )
             ],
 
@@ -96,7 +104,7 @@ label garden:
     )
 
     # Display the Abbot character's normal sprite
-    show abbot normal
+    show abbot normal with dissolve
 
     # Check if the garden has been visited before
     if not garden_visited:
