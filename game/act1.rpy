@@ -43,7 +43,7 @@ label open_map:
          jump garden
 
      "Scriptorium with Brother Conrad":
-         jump garden
+         jump scriptorium
 
      "Archives of the Societa Templois" if archives_known:
          jump garden

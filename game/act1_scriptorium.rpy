@@ -1,49 +1,48 @@
-label garden:
+label scriptorium:
     # Import the NPC module
     $ import npc
 
     #Prevents a bug where it reloads this scene and the user never said anything
     $ user_input = ""
 
-    # Set the background scene to the garden with a dissolve transition
-    scene bg garden with dissolve
+    # Set the background scene to the location with a dissolve transition
+    scene bg scriptorium with dissolve
 
     # Let's create the Prompt of the NPC in this scene
     define npc_prompt = npc_prompt_template.format(
     facts= act1_facts,
-    npc_name_and_title="Reverend Father Albrecht, you are the Abbot of this abbey"
+    npc_name_and_title="Brother Conrad, you are a scribe"
     ,
     npc_knows_ok_to_say="""
-        You do not know if the body has any traces because it was sent to the Mortuary as soon as you found it.
-        You then immediately sent a request to the pope for help to investigate this case which is why the player is here.
-        You don't know anything about the corpse, if they want to check it they need to go to the mortuary.
+        You were the only real friend of Friedrich II, you were his confessor which is why you liked each other.
+        You last saw Friedrich II for breakfast, he was always carrying a book and seemed distrubed. He wanted to confess something very important to you but didn't have time.
+        Friedrich II didn't eat or drink anything at breakfast.
+        You don't know anything about his corpse, if they want to check it they need to go to the mortuary.
         """
     ,
     npc_knows_afraid_to_say="""
-        Things became very messy recently, the scribes are doing a worse and worse job, sometimes making obvious mistakes or being very negligent in their work.
-        Some monks are missing Mass, which is a grave offence.
-        And some monks are seen wandering in the alleys after curfew.
-        You do not know why those things happen, everyone seems burnout all the time.
-        You are ashamed of yourself and blame yourself for all the woes that happened in the abbey, you doubt if it is a punishment from god.
+        Your handwriting is barely legible now. It used to be good but degraded a lot.
+		You are currently writing a copy of the Divine Comedy by Dante Alighieri, but it is very difficult to understand which part of the book you are writing because your handwriting is barely legible.
+        Your previous work was fine, it is just your newer work that is illegible.
+        You don't know why you feel so nervous and your handwriting is illegible, you just feel so stressed and so tired.
+        You don't know why Friedrich II or who killed him, but it has to do with the book he was carrying.
+        Books are EVIL. YOU KNOW IT ! You hear them moaning sometimes at night, especially in the archives of the Societa Templois, you hear them like beasts trying to drain the souls of the monks.
         """
     ,
     npc_personality="""
-        You love gardening, it is his favourite activity.
-        You are quite old and he seems lost in thoughts.
-        You always carry a rosary and pray even when talking to the player.
-        You pray a lot because you are very very worried about what will happen to the abbey now that their most important donors are dead. Almost of the funding of the abbey came from the generous patronage of Otto Leopold and Friedrich.
+        You speak in very weird sentences because you are actually completely mad, your face has nervous twitches and you scratch your arms nervously.
         """
     ,
-    npc_speaking_style="Your answers should be maxium two sentences long."
+    npc_speaking_style="Your answers should be maxium three sentences long, but very incoherent because you are completely crazy."
     )
 
     # Initialize the current NPC character
     $ curr_npc = npc.NPC(
         # Set the character name and display style
-        character=Character("Abbot"),
+        character=Character("Conrad"),
 
         # Set the initial message the NPC will say to the player
-        initial_message="Ah, you've arrived. I'm Abbot Reverend Father Albrecht. I'm grateful His Holiness has sent help upon my request.",
+        initial_message="Ye-Yes, you wanted to talk to me ? To me ? I-I am Brother Conrad. Yes.",
 
         # Set the instructions for the NPC's behavior and knowledge
         prompt = npc_prompt,
@@ -71,23 +70,22 @@ label garden:
         proxy=proxy
     )
 
-    # Display the Abbot character's normal sprite
-    show abbot normal with dissolve
+    # Display the NPC'snormal sprite
+    show conrad normal with dissolve
 
-    # Check if the garden has been visited before
-    if not garden_visited:
-        "(You are crrently in the Garden. Click on the top right Map icon to explore other locations and Journal icon to consul your notes)"
-        "You approach Reverend Father Albrecht."
-        "The Abbot stands tall, his kind face and deep-set eyes suggesting wisdom. His measured steps and long white beard convey authority, and his gnarled hands reveal a life of work. Often found in his beloved garden, he tends to plants and flowers."
-        "Speaking to the players, he holds a rosary, beads clicking softly as he prays. His devotion to the abbey and its inhabitants is evident."
+    # Check if the location has been visited before
+    if not scriptorium_visited:
+        "You walk towards Brother Conrad in the scriptorium."
+        "He is a thin, gaunt figure with sharp features, dark circles under his darting eyes. Nervously scratching his arm, Brother Conrad wears rumpled, ink-stained clothes."
+        "He is deeply focused on his work in the scriptorium, hunched over a desk, writing furiously on parchment and muttering to himself. As you approach, he briefly glances at you before returning to his work."
 
         # Read and display the initial message from the NPC
         $ curr_npc.read_initial_message()
     else:
-        "(You are back in the garden in front of the Abbot Reverend Father Albrecht)"
+        "(You are back in the scriptorium in front of the Brother Conrad)"
 
-    # Set the garden_visited flag to True
-    $ garden_visited = True
+    # Set the location flag to True
+    $ scriptorium_visited = True
 
     # Begin the main conversation loop
     while True:

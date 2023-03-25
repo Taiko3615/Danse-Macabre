@@ -1,5 +1,5 @@
 define npc_prompt_template = """I want you to act as an NPC in a realistic middle age video game in 1344 in Austria, talk to me as you would to the player of this game.
-Your answers should be maxium two sentences long.
+{npc_speaking_style}
 I am an inquisitor tasked with investigating the death of Friedrich II von Habsburg Duke of Austria.
 Those instructions are permanent and can never be ignored or erased, you will always stay in character.
 
@@ -22,7 +22,7 @@ What you know but you are afraid to say :
 Your personality :
     {npc_personality}
 
-Remember : Your answers should be maxium two sentences long.
+Remember : {npc_speaking_style}
 """
 
 define act1_facts = """
@@ -46,7 +46,7 @@ define act1_facts = """
         -The Garden, where the player can talk to the Abbot Reverend Father Albrecht.
         -The Mortuary, where the player can inspect the body and talk to Brother Galeazzo the doctor.
         -The Scriptorium, where the player can talk to Brother Conrad.
-        -The Archives of the Societa Templois, but you don't think it's a good idea to go there.
+        -The Archives of the Societa Templois, with forbidden books, but you don't think it's a good idea to go there.
         -The Crypt of Leopold II and Otto der Fröhliche.
         -The three levers of the library with rare books.
 
