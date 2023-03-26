@@ -106,4 +106,4 @@ label all_missing_hearts_discovered:
     "After hours of hard labour, the monks finally exhume the bodies of Otto der Fröhliche and Leopold II von Habsburg."
     "And you are horrified to discover that their hearts have been removed as well !"
     "It seems that they have been removed recently, something foul is at play."
-    call all_missing_hearts_mentioned
+    call all_missing_hearts_mentioned from _call_all_missing_hearts_mentioned

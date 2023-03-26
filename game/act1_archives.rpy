@@ -126,7 +126,7 @@ label reads_a_book:
         "(All your senses are screaming : Leave ! Now !)"
 
     else :
-        call lose_sanity
+        call lose_sanity from _call_lose_sanity
 
     $ reading_attempts = reading_attempts + 1
     return

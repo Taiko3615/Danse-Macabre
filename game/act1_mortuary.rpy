@@ -117,4 +117,4 @@ label missing_heart_at_mortuary:
     "You open the shroud covering the body and you are horrified to discover a massive scar on his chest !"
     "His heart has been removed !"
     "The doctor says that this scar wasn't present when he first collected the body, it was removed post mortem."
-    call missing_heart_mentioned
+    call missing_heart_mentioned from _call_missing_heart_mentioned
