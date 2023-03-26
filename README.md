@@ -1,5 +1,5 @@
 # Danse Macabre
- The first AI Powered Visual Novel using Chat GPT
+ The first AI Powered Visual Novel using Chat GPT (first working version the 5 of March 2023 : https://huggingface.co/spaces/Taiko3615/Danse_Macabre_AI_Text_RPG )
 
  Investigate the Death of Friedrich II von Habsburg in this thrilling Visual Novel RPG !
 
@@ -9,5 +9,5 @@
 
  Fully free and open source (including the prompts used to generate the images)
 
- To play it, here's the [Windows version](https://slack-files.com/TBY01QKAN-F050CD81V9A-00421856c4)
- [Mac version](https://slack-files.com/TBY01QKAN-F0509R0MP1R-5e932dda08)
+ To play it, here's the [Windows version](https://slack-files.com/TBY01QKAN-F0504EB2214-143f5a35c8)
+ [Mac version](https://slack-files.com/TBY01QKAN-F050PLUR4U9-1aa282445b)
