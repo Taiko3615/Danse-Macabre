@@ -70,7 +70,11 @@ label archives:
     #Say the initial message if it's the first time we are here, but still record it in the conversation if it isn't.
     $ curr_npc.npc_says("""As you reach the bottom of the stairs, you find yourself standing before the entrance to the Societa Templois archives. Pushing open the creaking door, you're met with a dimly lit room filled with an intriguing collection of bizarre objects and countless books.
 The shelves are lined with tomes of varying sizes and shapes, their odd configurations capturing your attention. Most of these books are chained securely to their resting places, as if they were wild beasts poised to leap at you.
-Dominating the center of the room is a massive book with teeth, encased within an imposing cage. The atmosphere within the archive exudes an air of mystery and caution, inviting you to explore further while maintaining a respectful distance from its peculiar inhabitants.""", not archives_visited)
+Dominating the center of the room is a massive book with teeth, encased within an imposing cage. The atmosphere within the archive exudes an air of mystery and caution, inviting you to explore further while maintaining a respectful distance from its peculiar inhabitants."""
+    ,
+    #Display this message only the first time
+    not archives_visited
+    )
 
     # Set the location flag to True
     $ archives_visited = True

@@ -47,7 +47,7 @@ label open_map:
          jump archives
 
      "Crypt" if crypt_known:
-         jump garden
+         jump crypt
 
 ###MAP-HIDDEN LOCATIONS SYSTEM###
 #Not all locations are known initially
@@ -124,4 +124,5 @@ label missing_heart_mentioned:
 
     "(This is an important clue !)"
     $ journal.append("Friedrich II's heart has been removed post mortem ! This is a proof that someone wanted him dead.")
+    $ act1_facts.append("\n  Friedrich II died of poisoning, the doctor mentioned it to everyone. And his heart has been removed, which is very strange.")
     call missing_heart_mentioned
