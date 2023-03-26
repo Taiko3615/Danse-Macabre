@@ -31,9 +31,8 @@ label archives:
         They are alone in the archives, there's nobody to talk to here.
 
     Here are some actions that I can perform and their results.
-        If I want to read a book, respond this exact meaning : I start reading and the more I read the more I want to read and I start reading like madman until a monk pulls me out of the book.
-        If I insist on reading, respond this exact meaning : Start by quoting the content of the book. 'In the darkest corners of the earth, beyond the reach of men, there lies a power that no mortal should seek. Its name is whispered only by the mad and the desperate, and those who speak it are cursed to an eternity of agony and despair.' The book is twisted, dark and illogical. Then describe that I becomes mad.
-        If I want to open the massive cage or read the book with teeth, respond this exact meaning : I can't because the cage is locked and nothing they do will unlock it and the book is inside it.
+        If I want to read a book, respond this exact meaning : I start reading and the more I read the more I want to read and I start reading like madman. The book is twisted, dark and illogical. Then describe that I becomes mad.
+        If I want to open the massive cage or read the book with teeth or read the big book, respond this exact meaning : I can't because the cage is locked and nothing they do will unlock it and the book is inside it.
 
     Remember : Your answers will be very descriptive and three sentences long in a very educated writing style. There is nothing magical in room or anywhere else, these books just seem horrible, but they aren't any magic.
     """.format(
@@ -50,7 +49,7 @@ label archives:
         controllers = [
                 npc.Controller(
                     #The condition which this controller is Checking for
-                    control_phrase="I requested to leave the archives or I requested to talk to anyone outside of the archives.",
+                    control_phrase="I requested to leave the archives or I am not in the archives anymore.",
                     #Which label should be called if this action happens
                     callback= "leaving_archives",
                     #We only activate this controller if the missing heart is not known yet
@@ -58,11 +57,13 @@ label archives:
                      ),
                  npc.Controller(
                      #The condition which this controller is Checking for
-                     control_phrase="A Monk pulled me out of reading a book.",
+                     control_phrase="I read the content of a book.",
                      #Which label should be called if this action happens
-                     callback= "monk_appears",
+                     callback= "reads_a_book",
                      #We only activate this controller if the missing heart is not known yet
-                     activated = True
+                     activated = True,
+                     #This controller should stay active
+                     permanent = True
                       )
             ],
 
@@ -108,9 +109,30 @@ label leaving_archives:
     "(To leave the archives you should click on the Map Icon on the top right.)"
     jump archives
 
-label monk_appears:
-    # Display the NPC'snormal sprite
-    show torch monk normal at left with dissolve
-    define c = Character("Monk")
-    c "The Monk says : You've been reading here for hours, is everything ok ?"
+#Every time the user tries to read a book, something happens to him, different each time
+define reading_attempts = 0
+
+label reads_a_book:
+
+    if reading_attempts == 0:
+        # Display the NPC's normal sprite
+        show torch monk normal at left with dissolve
+        $ curr_npc.npc_says("And suddently a concerned monk enters the room, pulling you away from the book, and breaking the trance that held you captive.")
+        $ curr_npc.npc_says("The Monk says : You've been reading here for hours, is everything ok ?")
+        $ curr_npc.npc_says("You answer politely and he leaves the room.")
+        "(Reading those books are clearly harmful)"
+        hide torch monk normal with dissolve
+
+    elif reading_attempts == 1:
+        "You are unsure what time it is."
+        "(You feel that you are not safe here and should leave at once.)"
+
+    elif reading_attempts == 2:
+        "You have the unnerving feeling that someone is watching you and coming closer."
+        "(All your senses are screaming : Leave ! Now !)"
+
+    elif reading_attempts == 3:
+        call lose_sanity
+
+    $ reading_attempts = reading_attempts + 1
     return

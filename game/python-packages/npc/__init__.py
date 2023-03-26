@@ -86,7 +86,7 @@ class NPC:
 # This class is designed to analyze a conversation and check if specific keywords
 # have been mentioned, triggering a callback function if the conditions are met
 class Controller:
-    def __init__(self, control_phrase, callback, activated = True):
+    def __init__(self, control_phrase, callback, activated = True, permanent = False):
         # Construct the control prompt by including the control_phrase
         self.prompt = (
             """I want you to act as a sentence analyser that responds to questions based on a conversation between a user and an assistant.
@@ -101,6 +101,9 @@ class Controller:
 
         #By default the callback is active, but it can be deactivated
         self.activated = activated
+
+        #By default a callback with be deactivated once triggered, but some controllers are permanent
+        self.permanent = permanent
 
     def control(self, messages, proxy):
 
@@ -141,8 +144,10 @@ class Controller:
         # Sometimes he "hesitates" ans says "I"m not sure if it is True or False"
         # So we only move forward if there's True and not False in his response
         if "<TRUE>" in response and not "<FALSE>" in response and self.callback is not None:
-            #The callback should only be called once
-            self.activated = False
+            
+            #If not permanent, then the callback should only be called once
+            if not self.permanent : self.activated = False
+
             return self.callback
 
         return None

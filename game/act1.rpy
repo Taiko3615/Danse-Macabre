@@ -3,7 +3,7 @@ label act1:
     show screen map_icon
 
     show screen journal_icon
-
+    
     while True :
         jump garden
 
@@ -24,11 +24,9 @@ screen map_icon:
         ycenter 110
         idle "icon map.png"
         hover "icon map hovered.png"
-        at custom_zoom
+        at transform:
+            zoom 0.1875
         action Jump("open_map")
-
-transform custom_zoom:
-    zoom 0.1875
 
 label open_map:
     scene bg map
@@ -98,7 +96,8 @@ screen journal_icon:
         ycenter 280
         idle "icon journal.png"
         hover  "icon journal hovered.png"
-        at custom_zoom
+        at transform:
+            zoom 0.1875
         action Call("open_journal")
 
 #When you open the journal we display the few journal entries
