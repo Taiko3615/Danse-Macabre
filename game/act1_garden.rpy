@@ -77,7 +77,8 @@ label garden:
 
     # Check if the garden has been visited before
     if not garden_visited:
-        "(You are crrently in the Garden. Click on the top right Map icon to explore other locations and Journal icon to consul your notes)"
+        "(In this Game, the NPCs are powered by artificial intelligence, they understand what you tell them and will respond accordingly)"
+        "(You are currently in the Garden. Click on the top right Map icon to explore other locations and Journal icon to consul your notes)"
         "You approach Reverend Father Albrecht."
         "The Abbot stands tall, his kind face and deep-set eyes suggesting wisdom. His measured steps and long white beard convey authority, and his gnarled hands reveal a life of work. Often found in his beloved garden, he tends to plants and flowers."
         "Speaking to the players, he holds a rosary, beads clicking softly as he prays. His devotion to the abbey and its inhabitants is evident."
