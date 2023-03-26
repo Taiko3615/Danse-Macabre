@@ -4,7 +4,7 @@ Used Gimp to resize crop etc...
 
 ##Scenes
 
-masterpiece Abbey bas-relief, a skull, lots of books --v 5 --ar 16:9 --upbeta
+ruins of an abbey, lots of skulls, books falling from the sky --ar 16:9 --upbeta --v 5
 
 sketch of the necronomicon bound in chains --ar 16:9 --upbeta
 
@@ -22,7 +22,7 @@ extremely detailed, extremely messy, medieval painting by Hieronymus Bosch, eldr
 
 the god of skulls, extremely detailed, extremely messy, medieval painting by Hieronymus Bosch, masterpiece --ar 16:9
 
-sketch of an Abbey --ar 16:9 --upbeta
+scary black and white pencil sketch of an abbey --ar 16:9 --v 5
 
 Scriptorium filled with monks transcribing old texts gothic architecture.
 
