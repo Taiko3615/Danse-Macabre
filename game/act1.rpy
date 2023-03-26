@@ -124,5 +124,23 @@ label missing_heart_mentioned:
 
     "(This is an important clue !)"
     $ journal.append("Friedrich II's heart has been removed post mortem ! This is a proof that someone wanted him dead.")
-    $ act1_facts.append("\n  Friedrich II died of poisoning, the doctor mentioned it to everyone. And his heart has been removed, which is very strange.")
-    call missing_heart_mentioned
+    $ act1_facts = act1_facts + "\n  Friedrich II died of poisoning, the doctor mentioned it to everyone. And his heart has been removed, which is very strange."
+    return
+
+define all_missing_hearts_known = False
+
+#Call this label when someone mentions it
+label all_missing_hearts_mentioned:
+    #Normally should onlny be called if not known yet, but in case of
+    if all_missing_hearts_known:
+        return
+
+    $ all_missing_hearts_known = True
+
+    "(This is an important clue !)"
+    $ journal.append("The heart of all three dukes : Friedrich II, Otto der Fröhliche and Leopold II von Habsburg are missing ! This is a proof of not one, but three murders !")
+    $ act1_facts = act1_facts + "\n  The heart of all three dukes : Friedrich II, Otto der Fröhliche and Leopold II von Habsburg are missing ! This is a proof of not one, but three murders !"
+    "END OF ACT 1"
+    "SEE YOU SOON FOR ACT 2 !"
+    "THE GAME WILL CONTINUE NOW, BUT YOU HAVE DISCOVERED EVERYTHING THAT HAD TO BE DISCOVERED"
+    return

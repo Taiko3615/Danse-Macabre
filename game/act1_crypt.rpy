@@ -17,8 +17,10 @@ label crypt:
     It is a very solemn crypt with a massive statue of Otto der Fröhliche in armor, and it’s written below : Otto slaying the heretics. Lots of candles and gifts in front of him. One Monk is crying, this family was the abbey’s only protectors, what will happen now ?"""
     ,
     gm_actions = """
-    If I want to exhume or inspect the body of Otto der Fröhliche or Leopold II respond this exact meaning : It would be highly improper and the monks will never allow it.
-"""
+    If I want to exhume or inspect the body of Otto der Fröhliche or Leopold II respond this exact meaning : """
+    #Here the prompt changes depending on a variable
+    +
+    "It would be highly improper and the monks will never allow it." if not missing_heart_known else "Considering the situation, the monks agree to exhume the corpses of Otto der Fröhliche and Leopold II von Habsburg. Then I see that their hearts are missing too ! It was removed recently apparently."
     ,
     gm_speaking_style = "Your answers will be very descriptive and three sentences long in a very educated writing style."
     )
@@ -39,7 +41,16 @@ label crypt:
                     callback= "leaving_crypt",
                     #We only activate this controller if the missing heart is not known yet
                     activated = True
+                     ),
+                npc.Controller(
+                    #The condition which this controller is Checking for
+                    control_phrase="The Game Master mentioned the hearts of Otto der Fröhliche or Leopold II von Habsburg are missing as well",
+                    #Which label should be called if this action happens
+                    callback= "all_missing_hearts_discovered",
+                    #We only activate this controller if the missing heart is know but not all the missing hearts
+                    activated = not all_missing_hearts_known and missing_heart_known
                      )
+
             ],
 
         # Set the proxy server for the NPC to use
@@ -89,3 +100,10 @@ As you look around, you see a monk crying in the corner, clearly distressed by t
 label leaving_crypt:
     "(To leave the crypt you should click on the Map Icon on the top right.)"
     jump crypt
+
+
+label all_missing_hearts_discovered:
+    "After hours of hard labour, the monks finally exhume the bodies of Otto der Fröhliche and Leopold II von Habsburg."
+    "And you are horrified to discover that their hearts have been removed as well !"
+    "It seems that they have been removed recently, something foul is at play."
+    call all_missing_hearts_mentioned
