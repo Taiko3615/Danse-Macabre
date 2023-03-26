@@ -131,7 +131,7 @@ label reads_a_book:
         "You have the unnerving feeling that someone is watching you and coming closer."
         "(All your senses are screaming : Leave ! Now !)"
 
-    elif reading_attempts == 3:
+    else :
         call lose_sanity
 
     $ reading_attempts = reading_attempts + 1

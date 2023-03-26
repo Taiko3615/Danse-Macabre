@@ -3,7 +3,7 @@ define config.rollback_enabled = False
 
 ##BASIC GAME STRUCTURE##
 label start:
-
+    
     #Let's start with the intro
     call intro from _call_intro
 
@@ -19,7 +19,7 @@ label start:
 define sanity_loss = 0
 
 label lose_sanity:
-    "You are not sure who you are and why you are here anymore."
+    "You are loosing grip with reality."
     $ sanity_loss = sanity_loss + 1
     show screen sanity_icon
     return
@@ -62,8 +62,15 @@ label open_sanity_icon:
         # Let's remove anything that would be remotely legible.
         response = re.sub("[a-zA-Z(),.?!:;\'\"\[\]]+", "", response)
 
-        # Ren'py default font doesn't support Ogham, so need to change it
-        response = "{font=DejaVuSans.ttf}"+response+"{/font}"
+        # If the response is longer than 150 characters, split it into multiple messages
+        if len(response) > 150:
+            response_list = [response[i:i+150] for i in range(0, len(response), 150)]
+        else:
+            response_list = [response]
 
-        j(response)
+        # Print each message in the response list
+        for r in response_list:
+            j("{font=DejaVuSans.ttf}"+r+"{/font}{nw}")
+
+        j("-----")
     return

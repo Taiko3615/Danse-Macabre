@@ -3,7 +3,7 @@ label act1:
     show screen map_icon
 
     show screen journal_icon
-    
+
     while True :
         jump garden
 
