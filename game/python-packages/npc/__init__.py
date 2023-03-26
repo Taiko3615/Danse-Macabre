@@ -8,14 +8,12 @@ import json
 # Define a Non-Player Character (NPC) class for a chatbot-based application
 class NPC:
     # Initialize the NPC with required information and optional controllers and proxy
-    def __init__(self, character, initial_message, prompt, controllers=[], proxy=''):
-        self.initial_message = initial_message
+    def __init__(self, character, prompt, controllers=[], proxy=''):
         self.prompt = prompt
         self.controllers = controllers
         self.character = character
         self.messages = [
             {"role": "system", "content": self.prompt},
-            {"role": "assistant", "content": self.initial_message}
         ]
         self.proxy = proxy
 
@@ -23,9 +21,12 @@ class NPC:
         #For some reasons it doens't work if the NPC calls them directly
         self.callbacks=[]
 
-    # Read and execute the initial message by the NPC
-    def read_initial_message(self):
-        self.character(self.initial_message)
+    #Makes the NPC say something
+    def npc_says(self, message, display_message=True):
+        self.messages.append(
+            {"role": "assistant", "content": message}
+        )
+        if display_message : self.display_line_by_line(message)
 
     # Process user input and add it to the message history
     def user_says(self, user_input):

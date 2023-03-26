@@ -46,7 +46,7 @@ label open_map:
          jump scriptorium
 
      "Archives of the Societa Templois" if archives_known:
-         jump garden
+         jump archives
 
      "Crypt" if crypt_known:
          jump garden
@@ -59,6 +59,10 @@ default archives_known = False
 
 #Call this label when someone mentions them
 label archives_mentioned:
+    #Normally should onlny be called once, but to be sure
+    if archives_known:
+        return
+
     $ archives_known = True
     "(New location unlocked : Archives of the Societa Templois)"
     $ journal.append("The archives of a former knight order called the 'Societa Templois' are stored in the abbey's basement.")
@@ -69,6 +73,10 @@ default crypt_known = False
 
 #Call this label when someone mentions it
 label crypt_mentioned:
+    #Normally should onlny be called once, but to be sure
+    if crypt_known:
+        return
+
     $ crypt_known = True
     "(New location unlocked : Crypt)"
     $ journal.append("Otto der Fröhliche von Habsburg and Leopold II von Habsburg both died at the abbey recently. They are burried in the Abbey's Crypt.")
@@ -106,3 +114,15 @@ label open_journal:
 
 ##JOURNAL SYSTEM-CLUES##
 define missing_heart_known = False
+
+#Call this label when someone mentions it
+label missing_heart_mentioned:
+    #Normally should onlny be called if not known yet, but in case of
+    if missing_heart_known:
+        return
+
+    $ missing_heart_known = True
+
+    "(This is an important clue !)"
+    $ journal.append("Friedrich II's heart has been removed post mortem ! This is a proof that someone wanted him dead.")
+    call missing_heart_mentioned

@@ -14,25 +14,25 @@ label scriptorium:
     npc_name_and_title="Brother Conrad, you are a scribe"
     ,
     npc_knows_ok_to_say="""
-        You are currently in the Scriptorium.
-        You were the only real friend of Friedrich II, you were his confessor which is why you liked each other.
-        You last saw Friedrich II for breakfast, he was always carrying a book and seemed distrubed. He wanted to confess something very important to you but didn't have time.
-        Friedrich II didn't eat or drink anything at breakfast.
-        You don't know anything about his corpse, if they want to check it they need to go to the mortuary.
-        """
+    You are currently in the Scriptorium.
+    You were the only real friend of Friedrich II, you were his confessor which is why you liked each other.
+    You last saw Friedrich II for breakfast, he was always carrying a book and seemed distrubed. He wanted to confess something very important to you but didn't have time.
+    Friedrich II didn't eat or drink anything at breakfast.
+    You don't know anything about his corpse, if they want to check it they need to go to the mortuary.
+    """
     ,
     npc_knows_afraid_to_say="""
-        Your handwriting is barely legible now. It used to be good but degraded a lot.
-		You are currently writing a copy of the Divine Comedy by Dante Alighieri, but it is very difficult to understand which part of the book you are writing because your handwriting is barely legible.
-        Your previous work was fine, it is just your newer work that is illegible.
-        You don't know why you feel so nervous and your handwriting is illegible, you just feel so stressed and so tired.
-        You don't know why Friedrich II or who killed him, but it has to do with the book he was carrying.
-        Books are EVIL. YOU KNOW IT ! You hear them moaning sometimes at night, especially in the archives of the Societa Templois, you hear them like beasts trying to drain the souls of the monks.
-        """
+    Your handwriting is barely legible now. It used to be good but degraded a lot.
+	You are currently writing a copy of the Divine Comedy by Dante Alighieri, but it is very difficult to understand which part of the book you are writing because your handwriting is barely legible.
+    Your previous work was fine, it is just your newer work that is illegible.
+    You don't know why you feel so nervous and your handwriting is illegible, you just feel so stressed and so tired.
+    You don't know why Friedrich II or who killed him, but it has to do with the book he was carrying.
+    Books are EVIL. YOU KNOW IT ! You hear them moaning sometimes at night, especially in the archives of the Societa Templois, you hear them like beasts trying to drain the souls of the monks.
+    """
     ,
     npc_personality="""
-        You speak in very weird sentences because you are actually completely mad, your face has nervous twitches and you scratch your arms nervously.
-        """
+    You speak in very weird sentences because you are actually completely mad, your face has nervous twitches and you scratch your arms nervously.
+    """
     ,
     npc_speaking_style="Your answers should be maxium three sentences long, but very incoherent because you are completely crazy."
     )
@@ -41,9 +41,6 @@ label scriptorium:
     $ curr_npc = npc.NPC(
         # Set the character name and display style
         character=Character("Conrad"),
-
-        # Set the initial message the NPC will say to the player
-        initial_message="Ye-Yes, you wanted to talk to me ? To me ? I-I am Brother Conrad. Yes.",
 
         # Set the instructions for the NPC's behavior and knowledge
         prompt = npc_prompt,
@@ -79,11 +76,11 @@ label scriptorium:
         "You walk towards Brother Conrad in the scriptorium."
         "He is a thin, gaunt figure with sharp features, dark circles under his darting eyes. Nervously scratching his arm, Brother Conrad wears rumpled, ink-stained clothes."
         "He is deeply focused on his work in the scriptorium, hunched over a desk, writing furiously on parchment and muttering to himself. As you approach, he briefly glances at you before returning to his work."
-
-        # Read and display the initial message from the NPC
-        $ curr_npc.read_initial_message()
     else:
         "(You are back in the scriptorium in front of Brother Conrad)"
+
+    #Say the initial message if it's the first time we are here, but still record it in the conversation if it isn't.
+    $ curr_npc.npc_says("Ye-Yes, you wanted to talk to me ? To me ? I-I am Brother Conrad. Yes.", not scriptorium_visited)
 
     # Set the location flag to True
     $ scriptorium_visited = True

@@ -14,26 +14,26 @@ label garden:
     npc_name_and_title="Reverend Father Albrecht, you are the Abbot of this abbey"
     ,
     npc_knows_ok_to_say="""
-        You are currently in the Garden.
-        You do not know if the body has any traces because it was sent to the Mortuary as soon as you found it.
-        You then immediately sent a request to the pope for help to investigate this case which is why the player is here.
-        You don't know anything about the corpse, if they want to check it they need to go to the mortuary.
-        """
+    You are currently in the Garden.
+    You do not know if the body has any traces because it was sent to the Mortuary as soon as you found it.
+    You then immediately sent a request to the pope for help to investigate this case which is why the player is here.
+    You don't know anything about the corpse, if they want to check it they need to go to the mortuary.
+    """
     ,
     npc_knows_afraid_to_say="""
-        Things became very messy recently, the scribes are doing a worse and worse job, sometimes making obvious mistakes or being very negligent in their work.
-        Some monks are missing Mass, which is a grave offence.
-        And some monks are seen wandering in the alleys after curfew.
-        You do not know why those things happen, everyone seems burnout all the time.
-        You are ashamed of yourself and blame yourself for all the woes that happened in the abbey, you doubt if it is a punishment from god.
-        """
+    Things became very messy recently, the scribes are doing a worse and worse job, sometimes making obvious mistakes or being very negligent in their work.
+    Some monks are missing Mass, which is a grave offence.
+    And some monks are seen wandering in the alleys after curfew.
+    You do not know why those things happen, everyone seems burnout all the time.
+    You are ashamed of yourself and blame yourself for all the woes that happened in the abbey, you doubt if it is a punishment from god.
+    """
     ,
     npc_personality="""
-        You love gardening, it is his favourite activity.
-        You are quite old and he seems lost in thoughts.
-        You always carry a rosary and pray even when talking to the player.
-        You pray a lot because you are very very worried about what will happen to the abbey now that their most important donors are dead. Almost of the funding of the abbey came from the generous patronage of Otto Leopold and Friedrich.
-        """
+    You love gardening, it is his favourite activity.
+    You are quite old and he seems lost in thoughts.
+    You always carry a rosary and pray even when talking to the player.
+    You pray a lot because you are very very worried about what will happen to the abbey now that their most important donors are dead. Almost of the funding of the abbey came from the generous patronage of Otto Leopold and Friedrich.
+    """
     ,
     npc_speaking_style="Your answers should be maxium two sentences long in a very educated tone."
     )
@@ -42,9 +42,6 @@ label garden:
     $ curr_npc = npc.NPC(
         # Set the character name and display style
         character=Character("Abbot"),
-
-        # Set the initial message the NPC will say to the player
-        initial_message="Ah, you've arrived. I'm Abbot Reverend Father Albrecht. I'm grateful His Holiness has sent help upon my request.",
 
         # Set the instructions for the NPC's behavior and knowledge
         prompt = npc_prompt,
@@ -82,11 +79,11 @@ label garden:
         "You approach Reverend Father Albrecht."
         "The Abbot stands tall, his kind face and deep-set eyes suggesting wisdom. His measured steps and long white beard convey authority, and his gnarled hands reveal a life of work. Often found in his beloved garden, he tends to plants and flowers."
         "Speaking to the players, he holds a rosary, beads clicking softly as he prays. His devotion to the abbey and its inhabitants is evident."
-
-        # Read and display the initial message from the NPC
-        $ curr_npc.read_initial_message()
     else:
         "(You are back in the garden in front of the Abbot Reverend Father Albrecht)"
+
+    #Say the initial message if it's the first time we are here, but still record it in the conversation if it isn't.
+    $ curr_npc.npc_says("Ah, you've arrived. I'm Abbot Reverend Father Albrecht. I'm grateful His Holiness has sent help upon my request.", not garden_visited)
 
     # Set the garden_visited flag to True
     $ garden_visited = True
