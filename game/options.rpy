@@ -108,6 +108,8 @@ define config.end_game_transition = None
 
 define config.window = "auto"
 
+##Fullscreen by default
+define config.default_fullscreen = True
 
 ## Transitions used to show and hide the dialogue window
 
