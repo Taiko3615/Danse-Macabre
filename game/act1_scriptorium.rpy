@@ -5,6 +5,11 @@ label scriptorium:
     #Prevents a bug where it reloads this scene and the user never said anything
     $ user_input = ""
 
+    #Change the music
+    stop music fadeout 1.0
+    $ renpy.random.shuffle(playlist)         # Should shuffle in place
+    play music playlist fadeout 1.0 fadein 1.0 # This should now play the full randomized playlist and then repeat from the begining.
+
     # Set the background scene to the location with a dissolve transition
     scene bg scriptorium with dissolve
 

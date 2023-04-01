@@ -24,6 +24,7 @@ screen map_icon:
         ycenter 110
         idle "icon map.png"
         hover "icon map hovered.png"
+        activate_sound "audio/click.mp3"
         at transform:
             zoom 0.1875
         action Jump("open_map")
@@ -96,6 +97,7 @@ screen journal_icon:
         ycenter 280
         idle "icon journal.png"
         hover  "icon journal hovered.png"
+        activate_sound "audio/click.mp3"
         at transform:
             zoom 0.1875
         action Call("open_journal")

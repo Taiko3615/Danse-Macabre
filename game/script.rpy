@@ -1,9 +1,15 @@
 #The rollback creates some bugs, so I disable it
 define config.rollback_enabled = False
 
+define playlist = [ "audio/music/Music 1.mp3", "audio/music/Music 2.mp3", "audio/music/Music 3.mp3", "audio/music/Music 4.mp3", "audio/music/Music 5.mp3", "audio/music/Music 6.mp3", "audio/music/Music 7.mp3", "audio/music/Music 8.mp3"]
+
 ##BASIC GAME STRUCTURE##
 label start:
-    
+    #Change the music
+    stop music fadeout 1.0
+    $ renpy.random.shuffle(playlist)         # Should shuffle in place
+    play music playlist fadeout 1.0 fadein 1.0 # Thi
+
     #Let's start with the intro
     call intro from _call_intro
 
@@ -31,6 +37,7 @@ screen sanity_icon:
         ycenter 110
         idle "icon sanity.png"
         hover "icon sanity hovered.png"
+        activate_sound "audio/click.mp3"
         at transform:
             zoom 0.1875
         action Call("open_sanity_icon")

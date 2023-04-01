@@ -1,5 +1,7 @@
 label intro:
 
+    play music "audio/music/Intro.mp3"
+
     scene bg war
 
     "Welcome to the year 1344"
@@ -37,6 +39,8 @@ label intro:
 
     f "What is this?"
 
+    play sound "audio/nightmare_scream.wav"
+
     scene bg horror 1 with dissolve
 
     f "N{w=0.2}O{w=0.2}{nw}"
@@ -57,6 +61,8 @@ label intro:
 
     f "N{w=0.1}O{w=0.1}O{w=0.1}O{w=0.1}O{w=0.1}O{w=0.1}O{w=0.2}o{w=0.2}o{w=0.2}o{w=0.2}o{w=0.2}o{w=0.2}o{w=0.2}.{w=0.2}.{w=0.2}.{w=0.2}{nw}"
 
+    stop sound fadeout 2.0
+    
     scene bg black with dissolve
 
     "Those were the final words of the Duke of Austria."
