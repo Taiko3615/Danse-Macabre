@@ -1,4 +1,4 @@
-label act2_mortuary:
+label act2_scriptorium:
     # Import the NPC module
     $ import npc
 
@@ -11,40 +11,41 @@ label act2_mortuary:
     play music playlist fadeout 1.0 fadein 1.0 # This should now play the full randomized playlist and then repeat from the begining.
 
     # Set the background scene to the location with a dissolve transition
-    scene bg mortuary with dissolve
+    scene bg scriptorium with dissolve
 
     # Let's create the Prompt of the NPC in this scene
     $ npc_prompt = npc_prompt_template.format(
-    facts= act1_facts,
-    npc_name_and_title="Brother Galeazzo, you are a doctor"
+    facts= act2_facts,
+    npc_name_and_title="Brother Conrad, you are a scribe"
     ,
     npc_knows_ok_to_say="""
-    You are currently in the Mortuary.
-    The corpse (or body) of Friedrich II is in front of you covered by a covered by a flag bearing the Habsburg coat of arms.
-    The air of the Mortuary is full of incense because you had to leave the body there for 9 days.
-    The heart of Friedrich II is missing, which is horrible. It was removed post mortem.
-    When you collected the body, the heart was still there, this removal happened post mortem.
-    Some rare herbs are missing from your storage, they were there few hours ago ! Those can be used to make poisons !
+    You are currently in the Scriptorium.
+    You were the only real friend of Friedrich II, you were his confessor which is why you liked each other.
+    You last saw Friedrich II for breakfast, he was always carrying a book and seemed distrubed. He wanted to confess something very important to you but didn't have time.
+    Friedrich II didn't eat or drink anything at breakfast.
+    His heart was removed, it must be the books who ate it !
     """
     ,
     npc_knows_afraid_to_say="""
-    You analysed the poison used, it is The Composition of Death, red copper, nitric acid, verdigris, arsenic, oak bark, rose water and black soot. A poison very complex and expensive to produce.
-    You personally don't know how to produce the Composition of Death and you don't have the ingredients.
-    You don't know if anyone has this knowledge in the Abbey or where to find those ingredients.
-    You have black spots on your face because you caugth a strange disease few years ago.
+    Your handwriting is barely legible now. It used to be good but degraded a lot.
+	You are currently writing a copy of the Divine Comedy by Dante Alighieri, but it is very difficult to understand which part of the book you are writing because your handwriting is barely legible.
+    Your previous work was fine, it is just your newer work that is illegible.
+    You don't know why you feel so nervous and your handwriting is illegible, you just feel so stressed and so tired.
+    You don't know why Friedrich II or who killed him, but it has to do with the book he was carrying.
+    Books are EVIL. YOU KNOW IT ! You hear them moaning sometimes at night, especially in the archives of the Societa Templois, you hear them like beasts trying to drain the souls of the monks.
     """
     ,
     npc_personality="""
-    You are very educated and want people to know it. So you always quote Latin as much as you can.
+    You speak in very weird sentences because you are actually completely mad, your face has nervous twitches and you scratch your arms nervously.
     """
     ,
-    npc_speaking_style="""Your answers should be maxium three sentences long, in a very educated tone, always end your responses with a quote in Latin."""
+    npc_speaking_style="Your answers should be maxium three sentences long, but very incoherent because you are completely crazy."
     )
 
     # Initialize the current NPC character
     $ curr_npc = npc.NPC(
         # Set the character name and display style
-        character=Character("Galeazzo"),
+        character=Character("Conrad"),
 
         # Set the instructions for the NPC's behavior and knowledge
         prompt = npc_prompt,
@@ -52,11 +53,11 @@ label act2_mortuary:
         controllers = [
                 npc.Controller(
                     #The condition which this controller is Checking for
-                    control_phrase="the NPC mentioned the missing rare herbs used to make poisons or he mentions they disappeared few hours ago",
+                    control_phrase="the NPC mentioned that his handwriting is barely legible",
                     #Which label should be called if this action happens
-                    callback= "missing_poison_ingredients_mentioned_at_mortuary",
+                    callback= "illegible_writing_mentioned",
                     #We only activate this controller if the missing herbs are not known yet
-                    activated = not missing_poison_ingredients_known
+                    activated = not illegible_writing_known
                 ),
                 npc.Controller(
                     #The condition which this controller is Checking for
@@ -89,12 +90,21 @@ label act2_mortuary:
     )
 
     # Display the NPC'snormal sprite
-    show galeazzo normal with dissolve
+    show conrad normal with dissolve
 
-    "(You are back in the mortuary in front of Brother Galeazzo)"
+    # Check if the location has been visited before
+    if not scriptorium_visited:
+        "You walk towards Brother Conrad in the scriptorium."
+        "He is a thin, gaunt figure with sharp features, dark circles under his darting eyes. Nervously scratching his arm, Brother Conrad wears rumpled, ink-stained clothes."
+        "He is deeply focused on his work in the scriptorium, hunched over a desk, writing furiously on parchment and muttering to himself. As you approach, he briefly glances at you before returning to his work."
+    else:
+        "(You are back in the scriptorium in front of Brother Conrad)"
 
     #Say the initial message if it's the first time we are here, but still record it in the conversation if it isn't.
-    $ curr_npc.npc_says("Greetings, I am Brother Galeazzo, the abbey's doctor. Quomodo te adiuvare possum?", False)
+    $ curr_npc.npc_says("Ye-Yes, you wanted to talk to me ? To me ? I-I am Brother Conrad. Yes.", not scriptorium_visited)
+
+    # Set the location flag to True
+    $ scriptorium_visited = True
 
     # Begin the main conversation loop
     while True:
@@ -114,10 +124,3 @@ label act2_mortuary:
 
         #Lots of bugs with history, so we clear it each times
         $ _history_list = []
-
-#Call this label when someone mentions it
-label missing_poison_ingredients_mentioned_at_mortuary:
-    "Brother Galeazzo informs you that some rare herbs used to make poisons have gone missing from the mortuary."
-    "He explains that they were present just a few hours ago before he went for lunch, but they have now disappeared."
-    "This is very troubling !"
-    call missing_poison_ingredients_mentioned from _call_missing_poison_ingredients_mentioned

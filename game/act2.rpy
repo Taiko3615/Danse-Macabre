@@ -2,18 +2,18 @@
 label act2:
     hide screen map_icon
 
-    "ACT2 INTRO"
-
     show screen map_icon_act2
 
     #We reset the journal
     $ journal = [
         "20th of December 1344 Abbey of Neuberg\n(Austrian Alps, Holy Roman Empire)",
         "I have been hired to investigate the death of Friedrich II von Habsburg duke of Austria",
-        "He died at the Abbey 9 days ago, he was poisoned"
-        "The heart of all three dukes : Friedrich II, Otto der Fröhliche and Leopold II von Habsburg are missing ! This is a proof of not one, but three murders !"
-        "Someone sabotaged the bridges, there is no way out of here !"
+        "He died at the Abbey 9 days ago, he was poisoned",
+        "The heart of all three dukes : Friedrich II, Otto der Fröhliche and Leopold II von Habsburg are missing ! This is a proof of not one, but three murders !",
+        "Someone sabotaged the bridges, there is no way out of here !",
     ]
+
+    "ACT2 INTRO"
 
     while True :
         jump act2_mortuary#act2_entrance
@@ -51,7 +51,7 @@ label open_map_act2:
          jump act2_mortuary
 
      "Scriptorium with Brother Conrad":
-         jump act2_mortuary#act2_scriptorium
+         jump act2_scriptorium
 
      "Kitchen with Brother Eudes" if kitchen_known:
          jump act2_mortuary#act2_kitchen
