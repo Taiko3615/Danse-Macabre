@@ -107,14 +107,14 @@ define act2_facts = """
         -The Archives of the Societa Templois, with forbidden books, but you don't think it's a good idea to go there.
         -The three levels of the library with rare books.
         -The Kitchen, where the player can talk to Brother Eudes.
-        -The Chapel, where the player can talk to Brother Ambrose.
+        -The Chapel, where the player can talk to Father Ambrose.
 
     There are 5 important characters :
         -Abbot Reverend Father Albrecht. Currently looking for help.
         -Brother Conrad, the friend and confessor of Friedrich II, also the last person to see him alive. He is always in the scriptorium.
         -Brother Galeazzo, the doctor of the abbey. He is in the Mortuary.
         -Brother Eudes, the cook.
-        -Brother Ambrose, the chaplain.
+        -Father Ambrose, the priest.
     """
 
 define proxy = "http://prima.wiki/proxy.php"

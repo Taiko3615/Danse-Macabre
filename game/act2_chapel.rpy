@@ -1,4 +1,4 @@
-label act2_scriptorium:
+label act2_chapel:
     # Import the NPC module
     $ import npc
 
@@ -11,41 +11,37 @@ label act2_scriptorium:
     play music playlist fadeout 1.0 fadein 1.0 # This should now play the full randomized playlist and then repeat from the begining.
 
     # Set the background scene to the location with a dissolve transition
-    scene bg scriptorium with dissolve
+    scene bg chapel with dissolve
 
     # Let's create the Prompt of the NPC in this scene
     $ npc_prompt = npc_prompt_template.format(
     facts= act2_facts,
-    npc_name_and_title="Brother Conrad, you are a scribe"
+    npc_name_and_title="Father Ambrose, you are a priest"
     ,
     npc_knows_ok_to_say="""
-    You are currently in the Scriptorium.
-    You were the only real friend of Friedrich II, you were his confessor which is why you liked each other.
-    You last saw Friedrich II for breakfast, he was always carrying a book and seemed distrubed. He wanted to confess something very important to you but didn't have time.
-    Friedrich II didn't eat or drink anything at breakfast.
-    His heart was removed, it must be the books who ate it !
+    You are currently in the Chapel. Preparing for your next service.
+    This time you will make a service on the topic of self sacrifice in the memory of Friedrich II because his young death is not unlike that of the Christ who sacrified himself to carry our sins.
     """
     ,
     npc_knows_afraid_to_say="""
-    Your handwriting is barely legible now. It used to be good but degraded a lot.
-	You are currently writing a copy of the Divine Comedy by Dante Alighieri, but it is very difficult to understand which part of the book you are writing because your handwriting is barely legible.
-    Your previous work was fine, it is just your newer work that is illegible.
-    You don't know why you feel so nervous and your handwriting is illegible, you just feel so stressed and so tired.
-    You don't know why Friedrich II or who killed him, but it has to do with the book he was carrying.
-    Books are EVIL. YOU KNOW IT ! You hear them moaning sometimes at night, especially in the archives of the Societa Templois, you hear them like beasts trying to drain the souls of the monks.
+    You are very worried about the other monks, a lot of them seem very burnout.
+    They don't attend mass on time, they arrive very early or very late or not at all.
+    Some just stare blankly without really following the service.
+    Something is very wrong in this abbey but you don't understand what.
+    Deep down you belive it is the devil's work, it has to be !
     """
     ,
     npc_personality="""
-    You speak in very weird sentences because you are actually completely mad, your face has nervous twitches and you scratch your arms nervously.
+    You are very charismatic, speak very loud and with authority.
     """
     ,
-    npc_speaking_style="Your answers should be maxium three sentences long, but very incoherent because you are completely crazy."
+    npc_speaking_style="Your answers should be maxium three sentences long, you quote the bible all the time."
     )
 
     # Initialize the current NPC character
     $ curr_npc = npc.NPC(
         # Set the character name and display style
-        character=Character("Conrad"),
+        character=Character("Ambrose"),
 
         # Set the instructions for the NPC's behavior and knowledge
         prompt = npc_prompt,
@@ -53,11 +49,11 @@ label act2_scriptorium:
         controllers = [
                 npc.Controller(
                     #The condition which this controller is Checking for
-                    control_phrase="the NPC mentioned that his handwriting is barely legible",
+                    control_phrase="the NPC mentioned that some monks don't attend mass",
                     #Which label should be called if this action happens
-                    callback= "illegible_writing_mentioned",
+                    callback= "monks_dont_attend_mass_mentioned",
                     #We only activate this controller if the missing herbs are not known yet
-                    activated = not illegible_writing_known
+                    activated = not monks_dont_attend_mass_known
                 ),
                 npc.Controller(
                     #The condition which this controller is Checking for
@@ -90,21 +86,21 @@ label act2_scriptorium:
     )
 
     # Display the NPC'snormal sprite
-    show conrad normal with dissolve
+    show ambrose normal with dissolve
 
     # Check if the location has been visited before
-    if not scriptorium_visited:
-        "You walk towards Brother Conrad in the scriptorium."
-        "He is a thin, gaunt figure with sharp features, dark circles under his darting eyes. Nervously scratching his arm, Brother Conrad wears rumpled, ink-stained clothes."
-        "He is deeply focused on his work in the scriptorium, hunched over a desk, writing furiously on parchment and muttering to himself. As you approach, he briefly glances at you before returning to his work."
+    if not chapel_visited:
+        "You enter the serene, candlelit Chapel, where Father Ambrose prepares for his next service."
+        "He is a tall, imposing figure with a mane of silver hair and a resonant voice that fills the sacred space."
+        "He moves with purpose, his every gesture imbued with authority and conviction. His eyes, bright with fervor, hold a commanding presence."
     else:
-        "(You are back in the scriptorium in front of Brother Conrad)"
+        "(You are back in the chapen in front of Father Ambrose)"
 
     #Say the initial message if it's the first time we are here, but still record it in the conversation if it isn't.
-    $ curr_npc.npc_says("Ye-Yes, you wanted to talk to me ? To me ? I-I am Brother Conrad. Yes.", not scriptorium_visited)
+    $ curr_npc.npc_says("Ah, my child, welcome! 'For where two or three are gathered together in my name, there am I in the midst of them' (Matthew 18:20). I am Father Ambrose, shepherd of this humble flock.", not chapel_visited)
 
     # Set the location flag to True
-    $ scriptorium_visited = True
+    $ chapel_visited = True
 
     # Begin the main conversation loop
     while True:

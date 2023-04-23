@@ -61,7 +61,7 @@ label act2_kitchen:
                 ),
                 npc.Controller(
                     #The condition which this controller is Checking for
-                    control_phrase="the NPC or Gamemaster mentioned the Chapel of the abbey or Brother Ambrose",
+                    control_phrase="the NPC or Gamemaster mentioned the Chapel of the abbey or Father Ambrose",
                     #Which label should be called if this action happens
                     callback= "chapel_mentioned",
                     #We only activate this controller if the missing herbs are not known yet

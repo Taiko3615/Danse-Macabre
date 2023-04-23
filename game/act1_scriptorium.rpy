@@ -66,7 +66,15 @@ label scriptorium:
                     callback= "archives_mentioned",
                     #We only activate this controller if the crypt is not known yet
                     activated = not archives_known
-                     )
+                     ),
+                npc.Controller(
+                    #The condition which this controller is Checking for
+                    control_phrase="the NPC mentioned that his handwriting is barely legible",
+                    #Which label should be called if this action happens
+                    callback= "illegible_writing_mentioned",
+                    #We only activate this controller if the missing herbs are not known yet
+                    activated = not illegible_writing_known
+                )
             ],
 
         # Set the proxy server for the NPC to use

@@ -35,6 +35,8 @@ Benedictine mortuary, incense smoke everywhere --ar 16:9 --upbeta
 
 busting kitchen in a abbey full of people eating --ar 16:9
 
+serene, candlelit Chapel in an abbey --ar 16:9
+
 
 ##Portraits
 
@@ -51,6 +53,8 @@ Upper-body shot, sick benedictine monk, smallpox, doctor, vial in hand
 Upper-body shot, benedictine monk, tonsure, praying
 
 Upper-body shot, benedictine monk cook, tonsure, fat, mixing a pot, black background
+
+Upper-body shot, priest, tonsure, tall, charismatic, imposing, black background
 
 
 ##Icons

@@ -56,8 +56,8 @@ label open_map_act2:
      "Kitchen with Brother Eudes" if kitchen_known:
          jump act2_kitchen
 
-     "Chapel with Brother Ambrose" if chapel_known:
-         jump act2_mortuary#act2_chapel
+     "Chapel with Father Ambrose" if chapel_known:
+         jump act2_chapel
 
      "Library" if library_known:
          jump act2_mortuary#act2_library
