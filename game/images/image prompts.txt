@@ -1,5 +1,6 @@
 Here is a list of Prompts used to generate those images using MidJourney
 In some cases we used this website to remove backgrounds https://removal.ai/upload/
+To upscale : https://imgupscaler.com/
 Used Gimp to resize crop etc...
 
 ##Scenes
@@ -32,6 +33,8 @@ Benedictine Abbey Crypt, tombs, knight statue in the background lots of candles 
 
 Benedictine mortuary, incense smoke everywhere --ar 16:9 --upbeta
 
+busting kitchen in a abbey full of people eating --ar 16:9
+
 
 ##Portraits
 
@@ -46,6 +49,8 @@ Upper-body shot, insane benedictine monk, massive dark circles, tonsure, tired, 
 Upper-body shot, sick benedictine monk, smallpox, doctor, vial in hand
 
 Upper-body shot, benedictine monk, tonsure, praying
+
+Upper-body shot, benedictine monk cook, tonsure, fat, mixing a pot, black background
 
 
 ##Icons
