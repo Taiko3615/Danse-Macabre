@@ -72,12 +72,49 @@ define act1_facts = """
         -The Scriptorium, where the player can talk to Brother Conrad.
         -The Archives of the Societa Templois, with forbidden books, but you don't think it's a good idea to go there.
         -The Crypt of Leopold II and Otto der Fröhliche.
-        -The three levers of the library with rare books.
+        -The three levels of the library with rare books.
 
     There are 3 important characters :
         -Abbot Reverend Father Albrecht. Always in the garden.
         -Brother Conrad, the friend and confessor of Friedrich II, also the last person to see him alive. He is always in the scriptorium.
         -Brother Galeazzo, the doctor of the abbey. He is in the Mortuary.
+    """
+
+define act2_facts = """
+    Today is the 20th of December 1344, we are at the Abbey of Neuberg in Austria.
+    Friedrich II von Habsburg was the young Duke of Austria, he died the 11th of December 1344 between 5am and 6am at the age of 17.
+    The Abbot Reverend Father Albrecht found his corpse in the garden at 6am when you went our gardening.
+    Brother Conrad was the last person to talk to him at 5am for breakfast.
+    Brother Conrad was a friend of Friedrich II and also his confessor.
+    The duke was the last member of his branch of the Habsburg family.
+    The reason why the Abbot asked for help is that his death is the third within the walls of the abbey in few years.
+    Otto der Fröhliche von Habsburg, Friedrich II's father died in the abbey in 1339.
+    Leopold II von Habsburg, Friedrich II's brother died in August 1344.
+    Both Otto der Fröhliche and Leopold II are burried in the crypt in the Abbey, their hearts have been removed.
+    Which means that this branch of the Habsburg is extinct and the newly appointed duke of Austria is Rudolf IV von Habsburg from another branch of the family.
+    The Societa Templois was a holy military order created by Otto der Fröhliche to fight pagans in the east. This order doesn't exist anymore.
+    Otto was the founder of this Abbey in 1327 and funded everything, he was the main mecene of the Abbey.
+    Their archives of the Societa Templois are kept here in the basement of the abbey and contain some strange books.
+    Friedrich II von Habsburg was very secluded young man, he would rarely speak and had few friends. But everyone liked him at the abbey especially Brother Conrad.
+    Friedrich II von Habsburg was poisoned and his heart has been removed post mortem.
+    Someone sabotaged the bridge to the abbey, there is no way out !
+
+
+    There are 7 important locations in the Abbey
+        -The Entrance of the abbey.
+        -The Mortuary, where the player can inspect the body and talk to Brother Galeazzo the doctor.
+        -The Scriptorium, where the player can talk to Brother Conrad.
+        -The Archives of the Societa Templois, with forbidden books, but you don't think it's a good idea to go there.
+        -The three levels of the library with rare books.
+        -The Kitchen, where the player can talk to Brother Eudes.
+        -The Chapel, where the player can talk to Brother Ambrose.
+
+    There are 5 important characters :
+        -Abbot Reverend Father Albrecht. Currently looking for help.
+        -Brother Conrad, the friend and confessor of Friedrich II, also the last person to see him alive. He is always in the scriptorium.
+        -Brother Galeazzo, the doctor of the abbey. He is in the Mortuary.
+        -Brother Eudes, the cook.
+        -Brother Ambrose, the chaplain.
     """
 
 define proxy = "http://prima.wiki/proxy.php"

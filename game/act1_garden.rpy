@@ -98,6 +98,8 @@ label garden:
         # Get input from the user
         $ user_input = renpy.input("What do you say ?", length=150)
 
+        $ if user_input == "LOZDGV" : renpy.jump("act2")
+
         # Process the user input and display the NPC's response
         $ curr_npc.user_says(user_input)
 

@@ -66,7 +66,7 @@ label archives_mentioned:
     "(New location unlocked : Archives of the Societa Templois)"
     $ journal.append("The archives of a former knight order called the 'Societa Templois' are stored in the abbey's basement.")
     return
-
+    
 #Crypt is hidden by default
 default crypt_known = False
 
@@ -142,7 +142,4 @@ label all_missing_hearts_mentioned:
     "(This is an important clue !)"
     $ journal.append("The heart of all three dukes : Friedrich II, Otto der Fröhliche and Leopold II von Habsburg are missing ! This is a proof of not one, but three murders !")
     $ act1_facts = act1_facts + "\n  The heart of all three dukes : Friedrich II, Otto der Fröhliche and Leopold II von Habsburg are missing ! This is a proof of not one, but three murders !"
-    "END OF ACT 1"
-    "SEE YOU SOON FOR ACT 2 !"
-    "THE GAME WILL CONTINUE NOW, BUT YOU HAVE DISCOVERED EVERYTHING THAT HAD TO BE DISCOVERED"
-    return
+    jump act2
