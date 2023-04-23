@@ -15,7 +15,7 @@ label act2_mortuary:
 
     # Let's create the Prompt of the NPC in this scene
     $ npc_prompt = npc_prompt_template.format(
-    facts= act1_facts,
+    facts= act2_facts,
     npc_name_and_title="Brother Galeazzo, you are a doctor"
     ,
     npc_knows_ok_to_say="""

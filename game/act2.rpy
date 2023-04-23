@@ -16,11 +16,12 @@ label act2:
     "ACT2 INTRO"
 
     while True :
-        jump act2_mortuary#act2_entrance
+        jump act2_entrance
 
 ##MAP SYSTEM##
 #Keep track of which location has been visited already
 #So we display a different message the second time you go there
+default entrance_visited = False
 default kitchen_visited = False
 default chapel_visited = False
 default library_visited = False
@@ -45,7 +46,7 @@ label open_map_act2:
      "Where should I go ?"
 
      "Entrance of the Abbey":
-         jump act2_mortuary#act2_entrance
+         jump act2_entrance
 
      "Mortuary with Brother Galeazzo":
          jump act2_mortuary
