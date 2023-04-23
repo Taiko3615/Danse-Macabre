@@ -61,7 +61,7 @@ label open_map_act2:
          jump act2_chapel
 
      "Library" if library_known:
-         jump act2_mortuary#act2_library
+         jump act2_library
 
      "Archives of the Societa Templois":
          jump archives
