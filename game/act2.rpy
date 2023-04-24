@@ -161,6 +161,7 @@ label monks_dont_attend_mass_mentioned:
     $ monks_dont_attend_mass_known = True
     "(This is an important clue !)"
     $ journal.append("Some monks don't attend mass, this is unacceptable!")
+    call count_clues
     return
 
 label illegible_writing_mentioned:
@@ -170,6 +171,7 @@ label illegible_writing_mentioned:
     $ illegible_writing_known = True
     "(This is an important clue !)"
     $ journal.append("Some scribes' writings is barely legible.")
+    call count_clues
     return
 
 label monks_wandering_mentioned:
@@ -179,6 +181,7 @@ label monks_wandering_mentioned:
     $ monks_wandering_known = True
     "(This is an important clue !)"
     $ journal.append("Some monks seem lost in thoughts, and are caught wandering in the corridors aimlessly.")
+    call count_clues
     return
 
 label messy_rooms_mentioned:
@@ -188,6 +191,7 @@ label messy_rooms_mentioned:
     $ messy_rooms_known = True
     "(This is an important clue !)"
     $ journal.append("Some monks don't tidy their cells.")
+    call count_clues
     return
 
 label messy_library_mentioned:
@@ -197,6 +201,7 @@ label messy_library_mentioned:
     $ messy_library_known = True
     "(This is an important clue !)"
     $ journal.append("Most library books are in the wrong shelves.")
+    call count_clues
     return
 
 label missing_poison_ingredients_mentioned:
@@ -206,6 +211,7 @@ label missing_poison_ingredients_mentioned:
     $ missing_poison_ingredients_known = True
     "(This is an important clue !)"
     $ journal.append("Lots of rare herbs that can be used to make poisons have been stolen in the last few hours at the mortuary.")
+    call count_clues
     return
 
 label monks_not_eating_mentioned:
@@ -215,4 +221,26 @@ label monks_not_eating_mentioned:
     $ monks_not_eating_known = True
     "(This is an important clue !)"
     $ journal.append("Lots of monks miss meal times or don't eat when they attend.")
+    call count_clues
     return
+
+#Count the number of clues found, when we reach a certain level, we win this act
+label count_clues:
+    define a = 0
+    $ if monks_dont_attend_mass_known: a = a+1
+    $ if illegible_writing_known: a = a+1
+    $ if monks_wandering_known: a = a+1
+    $ if messy_rooms_known: a = a+1
+    $ if messy_library_known: a = a+1
+    $ if missing_poison_ingredients_known: a = a+1
+    $ if monks_not_eating_known: a = a+1
+
+    if a >= 5:
+        "There is something heretical about this abbey"
+        "Monks not attending mass ? Scribes unable to write ?"
+        "This can only be the work of the devil"
+        "END OF ACT 2"
+        "Wait few weeks for ACT 3 :-)"
+        "You can keep playing in the meantime, but you have discovered everything that needed to be."
+
+    $ a = 0
