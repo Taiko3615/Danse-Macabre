@@ -1,8 +1,49 @@
 ##BASIC GAME STRUCTURE##
 label act2:
     hide screen map_icon
+    hide screen journal_icon
 
-    show screen map_icon_act2
+    play sound "audio/big_tree_fall_in_forest.ogg"
+
+    "(You hear a thunderous crashing noise echoing in the distance)"
+
+    define unknown = Character("?????")
+    unknown "THE BRIDGE! THE BRIDGE! HELP!"
+
+    scene bg broken bridge with dissolve
+
+    show abbot normal at left with dissolve
+
+    show galeazzo normal at right with dissolve
+    define abbot = Character("Abbot")
+    define galeazzo = Character("Galeazzo")
+    galeazzo "Reverend Father, what happened?"
+
+    abbot "I heard a great noise and, upon looking, I saw the bridge destroyed!"
+    abbot "We find ourselves trapped!"
+
+    galeazzo "Numerous paths lead to the monastery, yet only one requires traversal of a bridge."
+
+    abbot "Indeed, but not during winter. Have you forgotten the avalanche from a mere week ago?"
+    abbot "We are now utterly secluded! No way in, no way out !"
+    abbot "That is, unless one possesses exceptional climbing skills."
+
+    galeazzo "This situation is indeed most disconcerting."
+
+    abbot "I must summon aid at once!"
+    abbot "Brother de Vermont, Brother Basile, accompany me!"
+    abbot "A settlement lies nearby; they may offer assistance."
+    abbot "The ascent shall take hours, but we shall arrive ere the morrow."
+
+    hide abbot normal at left with dissolve
+
+    galeazzo "Inquisitor, gratias Deo quod ades. Thank God you are here!"
+    galeazzo "Graviora manent. I beseech you to assist us!"
+    galeazzo "This bridge underwent renovations but a month prior; it seems implausible that its collapse coincided with your arrival by mere chance."
+    galeazzo "Nos precamur te, quaesumus, adiuvandi causa investiga. (We beseech you, we ask, to help us investigate the cause.)"
+
+    "(Surely, this is no mere coincidence. There must be an individual striving to obstruct our quest for truth.)"
+    "(It has become imperative to examine the entirety of the abbey, as numerous disconcerting occurrences have come to light.)"
 
     #We reset the journal
     $ journal = [
@@ -11,9 +52,11 @@ label act2:
         "He died at the Abbey 9 days ago, he was poisoned",
         "The heart of all three dukes : Friedrich II, Otto der Fröhliche and Leopold II von Habsburg are missing ! This is a proof of not one, but three murders !",
         "Someone sabotaged the bridges, there is no way out of here !",
+        "I must examine the entirety of the abbey, as numerous disconcerting occurrences have come to light."
     ]
 
-    "ACT2 INTRO"
+    show screen journal_icon
+    show screen map_icon_act2
 
     while True :
         jump act2_entrance

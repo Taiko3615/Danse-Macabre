@@ -97,7 +97,7 @@ define act2_facts = """
     Their archives of the Societa Templois are kept here in the basement of the abbey and contain some strange books.
     Friedrich II von Habsburg was very secluded young man, he would rarely speak and had few friends. But everyone liked him at the abbey especially Brother Conrad.
     Friedrich II von Habsburg was poisoned and his heart has been removed post mortem.
-    Someone sabotaged the bridge to the abbey, there is no way out !
+    The only bride that leads to the abbey has collapsed ! There is no way in or out. It's not unreasonable to believe it was a sabotage.
 
 
     There are 7 important locations in the Abbey
