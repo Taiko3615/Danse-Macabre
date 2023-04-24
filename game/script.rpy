@@ -3,6 +3,11 @@ define config.rollback_enabled = False
 
 define playlist = [ "audio/music/Music 1.mp3", "audio/music/Music 2.mp3", "audio/music/Music 3.mp3", "audio/music/Music 4.mp3", "audio/music/Music 5.mp3", "audio/music/Music 6.mp3", "audio/music/Music 7.mp3", "audio/music/Music 8.mp3"]
 
+init python:
+    import npc
+    import chatgpt
+    import re
+
 ##BASIC GAME STRUCTURE##
 label start:
     #Change the music
@@ -12,9 +17,6 @@ label start:
 
     #Let's start with the intro
     call intro from _call_intro
-
-    #Now the tutorial
-    #call tutorial
 
     #Now start act 1
     call act1 from _call_act1
@@ -47,8 +49,6 @@ label open_sanity_icon:
     define j = Character(kind=nvl)
     j "Congratulations! You are Insane{nw}"
     python:
-        import chatgpt
-        import re
         messages = [
             {"role": "system", "content": "Write me a poetry about life and death in Ogham. The poetry should be at least "+str(sanity_loss)+"00 characters long and using Ogham characters. Don't include a translation."},
         ]

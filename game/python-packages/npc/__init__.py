@@ -21,6 +21,26 @@ class NPC:
         #For some reasons it doens't work if the NPC calls them directly
         self.callbacks=[]
 
+    #To be able to save we need to make this object picklable
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        # Remove any unpicklable attributes from the state dictionary here
+        state['chatgpt'] = None
+        state['re'] = None
+        state['json'] = None
+        return state
+
+    def __setstate__(self, state):
+        # Restore the instance state from the state dictionary
+        self.__dict__.update(state)
+        import chatgpt
+        import re
+        import json
+        self.chatgpt = chatgpt
+        self.re = re
+        self.json = json
+
+
     #Makes the NPC say something
     def npc_says(self, message, display_message=True):
         self.messages.append(
@@ -144,7 +164,7 @@ class Controller:
         # Sometimes he "hesitates" ans says "I"m not sure if it is True or False"
         # So we only move forward if there's True and not False in his response
         if "<TRUE>" in response and not "<FALSE>" in response and self.callback is not None:
-            
+
             #If not permanent, then the callback should only be called once
             if not self.permanent : self.activated = False
 

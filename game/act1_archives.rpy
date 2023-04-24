@@ -1,7 +1,4 @@
 label archives:
-    # Import the NPC module
-    $ import npc
-
     #Prevents a bug where it reloads this scene and the user never said anything
     $ user_input = ""
 
