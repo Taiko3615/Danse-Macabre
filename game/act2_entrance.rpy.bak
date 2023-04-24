@@ -146,9 +146,9 @@ label leaving_abbey:
 label monks_wandering_discovered:
     "Several monks meander through the corridor, seemingly adrift in contemplation. When engaged, their responses are barely legible."
     "How disconcerting this is!"
-    call monks_wandering_mentioned from _call_monks_wandering_mentioned
+    call monks_wandering_mentioned
 
 label messy_rooms_discovered:
     "At the core of monastic existence lies order and discipline."
     "You are shocked to find that some of the cells are in disarray!"
-    call messy_rooms_mentioned from _call_messy_rooms_mentioned
+    call messy_rooms_mentioned

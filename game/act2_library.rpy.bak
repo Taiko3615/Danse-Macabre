@@ -1,4 +1,4 @@
-label act2_entrance:
+label act2_library:
     #Prevents a bug where it reloads this scene and the user never said anything
     $ user_input = ""
 
@@ -8,22 +8,21 @@ label act2_entrance:
     play music playlist fadeout 1.0 fadein 1.0 # This should now play the full randomized playlist and then repeat from the begining.
 
     # Set the background scene to the location with a dissolve transition
-    scene bg garden with dissolve
+    scene bg library with dissolve
 
     # Let's create the Prompt of the NPC in this scene
     $ npc_prompt = gm_prompt_template.format(
     facts= act2_facts,
-    gm_current_situation = "I am currently in front of the Abbey, in the garden. There is nobody expect me in the garden at the moment."
+    gm_current_situation = "I am currently in the Library of the abbey. There is nobody expect me in the library at the moment."
     ,
     gm_knows_ok_to_say = """
-    I am in front of the once mighty Neuberg abbey, which seems to be victim of a dark conspiracy of some sort.
-    The ambiance is very heavy as all monks are in mourning and in shock."""
+    I am in the famous Library of the Abbey, three levels of rare books on varying topics. The two first levels are open to everyone and the third need a special permission, but I was allowed to go.
+    I am not in the Archives of the Societa Templois"""
     ,
     gm_actions = """
-    If I want to visit the corridors of the abbey respond this exact meaning : I can observe several monks wandering the passageways with no apparent purpose, appearing utterly exhausted. When questioned about their activities, they can hardly muster a response, clearly preoccupied by their thoughts.
-    If I want to visit the monks cells : I discover that some of the cells are in a state of disarray, appearing as if they have not been cleaned or tidied for weeks. Such conditions are absolutely intolerable within the walls of an abbey.
-    If I want to leave the abbey : I can't, I need to investigate here and anyway the bridge is destroyed
-    If I want to enter any of those locations the Chapel, the Library, the Kitchen, the Mortuary or the Scriptorium : 'You need to use the map to go to another location'"""
+    If I want to read some books : I realise that most books are on the wrong shelves !
+    If I want to leave the Library : 'You need to use the map to go to another location'
+    If I want to enter any of those locations the Chapel, the Kitchen, the Mortuary or the Scriptorium : 'You need to use the map to go to another location'"""
     ,
     gm_speaking_style = "Your answers will be very descriptive and three sentences long in a very educated writing style."
     )
@@ -39,35 +38,19 @@ label act2_entrance:
         controllers = [
                 npc.Controller(
                     #The condition which this controller is Checking for
-                    control_phrase="I requested to leave the Abbey or I am not in the Abbey anymore.",
+                    control_phrase="I requested to leave the Library or I am not in the Library anymore.",
                     #Which label should be called if this action happens
-                    callback= "leaving_abbey",
-                    #We only activate this controller if the missing heart is not known yet
-                    activated = True
-                 ),
-                npc.Controller(
-                    #The condition which this controller is Checking for
-                    control_phrase="I requested to enter or I am in the Chapel, the Library, the Kitchen, the Mortuary or the Scriptorium",
-                    #Which label should be called if this action happens
-                    callback= "leaving_abbey",
+                    callback= "leaving_library",
                     #We only activate this controller if the missing heart is not known yet
                     activated = True
                  ),
                  npc.Controller(
                      #The condition which this controller is Checking for
-                     control_phrase="the NPC or Gamemaster mentioned some monks wandering in the alleys without purpose and seemingly lost in thoughts",
+                     control_phrase="the NPC or Gamemaster mentioned that the books are on the wrong shelves",
                      #Which label should be called if this action happens
-                     callback= "monks_wandering_discovered",
+                     callback= "messy_library_discovered",
                      #We only activate this controller if the missing herbs are not known yet
-                     activated = not monks_wandering_known
-                 ),
-                 npc.Controller(
-                     #The condition which this controller is Checking for
-                     control_phrase="the NPC or Gamemaster mentioned that some cells are messy",
-                     #Which label should be called if this action happens
-                     callback= "messy_rooms_discovered",
-                     #We only activate this controller if the missing herbs are not known yet
-                     activated = not messy_rooms_known
+                     activated = not messy_library_known
                  ),
                 npc.Controller(
                     #The condition which this controller is Checking for
@@ -101,22 +84,20 @@ label act2_entrance:
     )
 
     # Check if the location has been visited before
-    if not entrance_visited:
+    if not library_visited:
         "(In this sequence you are not talking to any Character in particular, you have to describe what you do and the game will react accordingly)"
-        "You find yourself at the entrance of the once-peaceful abbey garden, now shrouded in a foreboding atmosphere."
-        "The once-vibrant foliage and blooming flowers seem muted, as if they too are grieving the recent tragedies. The usual symphony of birdsong and rustling leaves is eerily absent, replaced by a heavy silence that hangs in the air."
     else:
-        "(You are back in front of the Abbey)"
+        "(You are back in the Library)"
 
     #Say the initial message if it's the first time we are here, but still record it in the conversation if it isn't.
-    $ curr_npc.npc_says("""The garden appears to be abandoned, as the Abbot has left in search of help following the discovery of three grisly murders and the sabotaged bridge. A somber cloud of unease looms over the entire abbey, casting a pall upon its once-hallowed grounds."""
+    $ curr_npc.npc_says("""You step into the magnificent Abbey Library, a grand repository of knowledge spanning three levels and housing a wealth of rare books. The first two levels are open to the public, offering an extensive array of texts that draw scholars and seekers of wisdom from near and far. The polished wooden shelves overflow with ancient tomes, illuminated manuscripts, and scrolls that whisper the secrets of the ages. Thanks to a special authorization you've obtained, you also have access to the exclusive third level, a restricted sanctum filled with the most precious and arcane volumes. This hidden treasure trove promises unparalleled insights and mysteries, igniting a sense of excitement within you as you prepare to explore its hidden depths."""
     ,
     #Display this message only the first time
-    not entrance_visited
+    not library_visited
     )
 
     # Set the location flag to True
-    $ entrance_visited = True
+    $ library_visited = True
 
     # Begin the main conversation loop
     while True:
@@ -138,17 +119,12 @@ label act2_entrance:
         $ _history_list = []
 
 #Call this label when someone mentions it
-label leaving_abbey:
+label leaving_library:
     "(To go somewhere you should click on the Map Icon on the top right.)"
-    jump act2_entrance
+    jump act2_library
 
 
-label monks_wandering_discovered:
-    "Several monks meander through the corridor, seemingly adrift in contemplation. When engaged, their responses are barely legible."
-    "How disconcerting this is!"
-    call monks_wandering_mentioned from _call_monks_wandering_mentioned
-
-label messy_rooms_discovered:
-    "At the core of monastic existence lies order and discipline."
-    "You are shocked to find that some of the cells are in disarray!"
-    call messy_rooms_mentioned from _call_messy_rooms_mentioned
+label messy_library_discovered:
+    "The volumes are misplaced throughout the shelves! Theological works are found intermingled with the fiction section, while alchemical treatises are misplaced among the forbidden texts."
+    "Reorganizing this library will be a painstaking task, taking months to complete and rendering it unusable in the interim. Such disarray is utterly inconceivable for a distinguished library like the one at Neuberg Abbey."
+    call messy_library_mentioned

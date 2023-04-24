@@ -161,7 +161,7 @@ label monks_dont_attend_mass_mentioned:
     $ monks_dont_attend_mass_known = True
     "(This is an important clue !)"
     $ journal.append("Some monks don't attend mass, this is unacceptable!")
-    call count_clues from _call_count_clues
+    call count_clues
     return
 
 label illegible_writing_mentioned:
@@ -171,7 +171,7 @@ label illegible_writing_mentioned:
     $ illegible_writing_known = True
     "(This is an important clue !)"
     $ journal.append("Some scribes' writings is barely legible.")
-    call count_clues from _call_count_clues_1
+    call count_clues
     return
 
 label monks_wandering_mentioned:
@@ -181,7 +181,7 @@ label monks_wandering_mentioned:
     $ monks_wandering_known = True
     "(This is an important clue !)"
     $ journal.append("Some monks seem lost in thoughts, and are caught wandering in the corridors aimlessly.")
-    call count_clues from _call_count_clues_2
+    call count_clues
     return
 
 label messy_rooms_mentioned:
@@ -191,7 +191,7 @@ label messy_rooms_mentioned:
     $ messy_rooms_known = True
     "(This is an important clue !)"
     $ journal.append("Some monks don't tidy their cells.")
-    call count_clues from _call_count_clues_3
+    call count_clues
     return
 
 label messy_library_mentioned:
@@ -201,7 +201,7 @@ label messy_library_mentioned:
     $ messy_library_known = True
     "(This is an important clue !)"
     $ journal.append("Most library books are in the wrong shelves.")
-    call count_clues from _call_count_clues_4
+    call count_clues
     return
 
 label missing_poison_ingredients_mentioned:
@@ -211,7 +211,7 @@ label missing_poison_ingredients_mentioned:
     $ missing_poison_ingredients_known = True
     "(This is an important clue !)"
     $ journal.append("Lots of rare herbs that can be used to make poisons have been stolen in the last few hours at the mortuary.")
-    call count_clues from _call_count_clues_5
+    call count_clues
     return
 
 label monks_not_eating_mentioned:
@@ -221,7 +221,7 @@ label monks_not_eating_mentioned:
     $ monks_not_eating_known = True
     "(This is an important clue !)"
     $ journal.append("Lots of monks miss meal times or don't eat when they attend.")
-    call count_clues from _call_count_clues_6
+    call count_clues
     return
 
 #Count the number of clues found, when we reach a certain level, we win this act

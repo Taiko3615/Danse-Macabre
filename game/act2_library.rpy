@@ -127,4 +127,4 @@ label leaving_library:
 label messy_library_discovered:
     "The volumes are misplaced throughout the shelves! Theological works are found intermingled with the fiction section, while alchemical treatises are misplaced among the forbidden texts."
     "Reorganizing this library will be a painstaking task, taking months to complete and rendering it unusable in the interim. Such disarray is utterly inconceivable for a distinguished library like the one at Neuberg Abbey."
-    call messy_library_mentioned
+    call messy_library_mentioned from _call_messy_library_mentioned
