@@ -11,7 +11,7 @@ https://user-images.githubusercontent.com/1241159/235359291-16f2d5bc-3a67-4871-a
 
  Fully free and open source (including the prompts used to generate the images)
 
-#➡️[Latest Windows, Mac and Linux version](https://slack-files.com/TBY01QKAN-F055ZGH4ERX-b906dfdde0)
+# ➡️[Latest Windows, Mac and Linux version](https://slack-files.com/TBY01QKAN-F055ZGH4ERX-b906dfdde0)
 
  Available soon on [Steam](https://store.steampowered.com/app/2376080/)
 
