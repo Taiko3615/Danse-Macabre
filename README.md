@@ -9,10 +9,10 @@
 
  Fully free and open source (including the prompts used to generate the images)
 
- To play the latest stable version, it's here [Windows and Linux version available on Steam](https://store.steampowered.com/app/2376080/)
+ To play the latest stable version, it's here [Windows, Mac and Linux version](https://slack-files.com/TBY01QKAN-F055ZGH4ERX-b906dfdde0)
 
- [Mac version here](https://slack-files.com/TBY01QKAN-F054LCSDQER-7bff73e1e1)
+ Available soon on [Steam](https://store.steampowered.com/app/2376080/)
 
  Any questions ? [Ping us on Discord](https://discord.gg/RGGHfbKXfA)
 
-(With the earliest working version as of 5th of March 2023, yes it is the very first game using ChatGPT to power its NPCs see the repo history here https://huggingface.co/spaces/Taiko3615/Danse_Macabre_AI_Text_RPG )
+(With the earliest working version as of 5th of March 2023, it is the very first game using ChatGPT to power its NPCs see the repo history here https://huggingface.co/spaces/Taiko3615/Danse_Macabre_AI_Text_RPG )
