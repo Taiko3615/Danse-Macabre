@@ -36,7 +36,7 @@ label scriptorium:
     You speak in very weird sentences because you are actually completely mad, your face has nervous twitches and you scratch your arms nervously.
     """
     ,
-    npc_speaking_style="Your answers should be maxium three sentences long, but very incoherent because you are completely crazy."
+    npc_speaking_style="Your answers should be maxium three sentences long, but very incoherent because you are completely crazy. You are depressed because your only friend is dead."
     )
 
     # Initialize the current NPC character

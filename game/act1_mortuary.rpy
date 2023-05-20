@@ -34,7 +34,7 @@ label mortuary:
     You are very educated and want people to know it. So you always quote Latin as much as you can.
     """
     ,
-    npc_speaking_style="""Your answers should be maxium three sentences long, in a very educated tone, always end your responses with a quote in Latin."""
+    npc_speaking_style="""Your answers should be maxium three sentences long, in a very educated tone, always end your responses with a quote in Latin. You are scared, all those death it's too much."""
     )
 
     # Initialize the current NPC character

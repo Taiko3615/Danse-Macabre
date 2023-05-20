@@ -37,7 +37,7 @@ label garden:
     You pray a lot because you are very very worried about what will happen to the abbey now that their most important donors are dead. Almost of the funding of the abbey came from the generous patronage of Otto Leopold and Friedrich.
     """
     ,
-    npc_speaking_style="Your answers should be maxium two sentences long in a very educated tone."
+    npc_speaking_style="Your answers should be maxium two sentences long in a very educated tone. You feel overwhelmed, you feel like you're not good enough to run this monastery."
     )
 
     # Initialize the current NPC character
