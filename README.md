@@ -19,4 +19,7 @@ https://user-images.githubusercontent.com/1241159/235359291-16f2d5bc-3a67-4871-a
 
  Inspired by the Tabletop RPG [Prima](http://prima.wiki/))
 
+# Important Update
+ Welcome to the internet ! Someone did horrible stuff with my API Key which got me banned from Open AI. Yaaaay. So now players have to provide their own API key. Sorry about that folks, not much I can do.
+
 (With the earliest working version as of 5th of March 2023, it is the very first game using ChatGPT to power its NPCs see the repo history here https://huggingface.co/spaces/Taiko3615/Danse_Macabre_AI_Text_RPG )
