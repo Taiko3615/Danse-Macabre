@@ -8,7 +8,7 @@ import json
 # Define a Non-Player Character (NPC) class for a chatbot-based application
 class NPC:
     # Initialize the NPC with required information and optional controllers and proxy
-    def __init__(self, character, prompt, controllers=[], proxy=''):
+    def __init__(self, character, prompt, controllers=[], proxy='', api_key=''):
         self.prompt = prompt
         self.controllers = controllers
         self.character = character
@@ -16,6 +16,7 @@ class NPC:
             {"role": "system", "content": self.prompt},
         ]
         self.proxy = proxy
+        self.api_key = api_key
 
         #A list of labels that the NPC requests the main thread to callback
         #For some reasons it doens't work if the NPC calls them directly
@@ -65,7 +66,7 @@ class NPC:
 
         # Attempt to generate a response using the ChatGPT API
         try:
-            self.messages = chatgpt.completion(self.messages, proxy=self.proxy)
+            self.messages = chatgpt.completion(self.messages, proxy=self.proxy, api_key=self.api_key)
 
             # Extract the NPC's response from the generated messages
             response = self.messages[-1]["content"]
@@ -78,7 +79,7 @@ class NPC:
 
         #Finally call the controllers
         for controller in self.controllers:
-            result = controller.control(self.messages, self.proxy)
+            result = controller.control(self.messages, self.proxy, api_key=self.api_key)
             if result is not None:
                 self.callbacks.append(result)
 
@@ -125,7 +126,7 @@ class Controller:
         #By default a callback with be deactivated once triggered, but some controllers are permanent
         self.permanent = permanent
 
-    def control(self, messages, proxy):
+    def control(self, messages, proxy, api_key):
 
         #If the callback is deactivated, we skip this
         if not self.activated : return None
@@ -156,7 +157,7 @@ class Controller:
 
         try:
             # Make a ChatGPT API call to get the response
-            response = chatgpt.completion(control_messages, proxy=proxy)[-1]["content"]
+            response = chatgpt.completion(control_messages, proxy=proxy, api_key=api_key)[-1]["content"]
         except:
             # Display an error message if the API call fails
             response = "<FALSE> ERROR"

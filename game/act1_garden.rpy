@@ -68,7 +68,9 @@ label garden:
             ],
 
         # Set the proxy server for the NPC to use
-        proxy=proxy
+        proxy=proxy,
+        #If the API key is set, we'll use that instead.
+        api_key=apikey  
     )
 
     # Display the Abbot character's normal sprite

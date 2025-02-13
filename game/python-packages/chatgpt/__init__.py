@@ -9,6 +9,9 @@ def completion(messages, api_key="", proxy=''):
     # Set the API endpoint URL for ChatGPT completions
     url = "https://api.openai.com/v1/chat/completions"
 
+    # If we are in api key mode, then erase the proxy
+    if api_key is not None and api_key!='': proxy = ''
+
     # If a proxy is set, then it should use that instead
     if proxy is not None and proxy != '': url = proxy
 

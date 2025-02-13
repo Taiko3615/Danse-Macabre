@@ -15,6 +15,9 @@ label start:
     $ renpy.random.shuffle(playlist)         # Should shuffle in place
     play music playlist fadeout 1.0 fadein 1.0 # Thi
 
+    #Unfortunately some users horribly abused my API Key, so now you need to provide your own.
+    call get_api_key
+
     #Let's start with the intro
     call intro from _call_intro
 
@@ -22,6 +25,21 @@ label start:
     call act1 from _call_act1
 
     return
+
+
+label get_api_key:
+    define s = Character(None, kind=nvl, what_prefix="Game Author: \"", what_suffix="\"")
+
+    s "Welcome to Danse Macabre RPG, the world's first game entire powered by AI.\nIt's commonplace now, but back then we were the first."
+    s "Initially this game would use my own Open AI API key to generate all the dialogues.\nUnfortunately some players abused it in horrible ways, which got me banned from OpenAI."
+    s "No surprises there, Welcome to the internet !"
+    s "So I have no choice now but to ask you to use your own OpenAI api key.\nGoogle 'how to create an Open AI API key' to learn how to do it, then input you key here :"
+    python:
+        apikey = renpy.input("What is your OpenAI API key?")
+        apikey = apikey.strip()
+    s "Thanks ! Without further ado, let's start !"
+    return
+
 
 #During the game, you can lose sanity. It's a permanent effect that adds up
 define sanity_loss = 0
@@ -54,7 +72,7 @@ label open_sanity_icon:
         ]
         try:
             # Make a ChatGPT API call to get the response
-            response = chatgpt.completion(messages, proxy=proxy)[-1]["content"]
+            response = chatgpt.completion(messages, proxy=proxy, api_key=apikey)[-1]["content"]
         except:
             # Display an error message if the API call fails
             response = """᚛ᚉᚑᚊᚔᚉᚔᚋᚐᚉᚓ᚜ ᚄᚏᚑᚔᚅᚓ᚜

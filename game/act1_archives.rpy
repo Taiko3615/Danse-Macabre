@@ -60,7 +60,9 @@ label archives:
             ],
 
         # Set the proxy server for the NPC to use
-        proxy=proxy
+        proxy=proxy,
+        #If the API key is set, we'll use that instead.
+        api_key=apikey  
     )
 
     # Check if the location has been visited before
