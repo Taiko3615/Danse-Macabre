@@ -16,7 +16,7 @@ label start:
     play music playlist fadeout 1.0 fadein 1.0 # Thi
 
     #Unfortunately some users horribly abused my API Key, so now you need to provide your own.
-    call get_api_key
+    call get_api_key from _call_get_api_key
 
     #Let's start with the intro
     call intro from _call_intro
@@ -35,7 +35,7 @@ label get_api_key:
     s "No surprises there, Welcome to the internet !"
     s "So I have no choice now but to ask you to use your own OpenAI api key.\nGoogle 'how to create an Open AI API key' to learn how to do it, then input you key here :"
     python:
-        apikey = renpy.input("What is your OpenAI API key?")
+        apikey = renpy.input("What is your OpenAI API key?",length=1000)
         apikey = apikey.strip()
     s "Thanks ! Without further ado, let's start !"
     return
