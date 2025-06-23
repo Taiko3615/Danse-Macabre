@@ -33,7 +33,8 @@ label get_api_key:
     s "Welcome to Danse Macabre RPG, the world's first game entire powered by AI.\nIt's commonplace now, but back then we were the first."
     s "Initially this game would use my own Open AI API key to generate all the dialogues.\nUnfortunately some players abused it in horrible ways, which got me banned from OpenAI."
     s "No surprises there, Welcome to the internet !"
-    s "So I have no choice now but to ask you to use your own OpenAI api key.\nGoogle 'how to create an Open AI API key' to learn how to do it, then input you key here :"
+    s "So I have no choice now but to ask you to use your own OpenAI api key.\nGoogle 'how to create an Open AI API key' to learn how to do it, then input you key here."
+    s "Don't forget to setup a billing method on your OpenAI account https://platform.openai.com/settings/organization/billing/overview"
     python:
         apikey = renpy.input("What is your OpenAI API key?",length=1000)
         apikey = apikey.strip()

@@ -4,9 +4,9 @@ __version__ = "0.0.1"
 import chatgpt
 import re
 import json
-import renpy.exports as renpy
 import traceback
 import textwrap
+import renpy.exports as renpy
 
 # Define a Non-Player Character (NPC) class for a chatbot-based application
 class NPC:
@@ -85,12 +85,11 @@ class NPC:
             response = "(There was an error, please try again.)\n" + safe_trace
 
         # Display the NPC's response line by line with a specified time delay between messages
-        s = renpy.character.Character(None, kind=renpy.store.nvl, what_suffix="\"")
         split = textwrap.wrap(response, width=200)
         for line in split:
             line = line.strip()
             if line:
-                s(line)
+                self.character(line)
 
         #Finally call the controllers
         for controller in self.controllers:

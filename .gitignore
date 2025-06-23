@@ -30,3 +30,5 @@ files.txt
 
 # End of https://www.toptal.com/developers/gitignore/api/renpy
 *.rpyc
+.DS_Store
+*.bak
